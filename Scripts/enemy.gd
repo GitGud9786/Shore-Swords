@@ -7,8 +7,7 @@ const SPEED = 100.0
 
 var HEALTH = 100
 var DAMAGE = 20
-var flash_color = Color(0.9,0,0)
-var flash_duration = 0.4
+var flash_color = Color(0.5,0,0)
 
 func get_health():
 	return HEALTH
@@ -20,7 +19,7 @@ func take_damage(damage):
 	HEALTH -= damage
 	if HEALTH<=0:
 		animated_sprite.play("pawn_dead")
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.4).timeout
 		queue_free()
 	else:#only show a hit effect
 		animated_sprite.modulate = flash_color
