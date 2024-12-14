@@ -66,9 +66,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		animated_sprite.play("knight_idle")
 
 
-
 func _on_area_collision_body_entered(body: Node2D) -> void:
 	print("Enemy hit successful")
-	body.get_node("AnimatedSprite2D").play("pawn_dead")
-	await get_tree().create_timer(5.0).timeout
-	body.queue_free()
+	body.take_damage(20)
+	print(body.get_health())

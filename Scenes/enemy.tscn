@@ -302,24 +302,27 @@ animations = [{
 size = Vector2(32, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45n76"]
-size = Vector2(40, 49)
+size = Vector2(28, 28)
 
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_w6v3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6xsk3")
-animation = &"pawn_dead"
+animation = &"pawn_idle"
 autoplay = "pawn_idle"
-frame = 7
-frame_progress = 0.741999
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]
-position = Vector2(39, 0)
 
 [node name="attack_collision" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
+position = Vector2(38, 0)
 shape = SubResource("RectangleShape2D_5wnam")
 
 [node name="body_collision" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_45n76")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
