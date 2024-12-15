@@ -346,7 +346,7 @@ script = ExtResource("1_w6v3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6xsk3")
-animation = &"pawn_idle"
+animation = &"pawn_running"
 autoplay = "pawn_idle"
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]

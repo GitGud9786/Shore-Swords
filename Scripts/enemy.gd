@@ -37,6 +37,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
+	if velocity != Vector2.ZERO:
+		animated_sprite.play("pawn_running")
+		animated_sprite.flip_h = velocity.x < 0
+	else:
+		animated_sprite.play("pawn_idle")
+	
 	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision"):
 		print("Protagonist hit")
 		lock_on_protagonist(detector_ray.get_collider())
@@ -52,9 +58,13 @@ func lock_on_protagonist(body) -> void:
 	detector_animation.stop()
 	var player_direction = global_position.direction_to(body.global_position)
 	detector_ray.rotation = player_direction.angle()
+	velocity = SPEED * player_direction
+	move_and_slide()
 
 func unlock_on_protagonist() -> void:
 	print("No more detection")
 	if lock_on:
 		lock_on = false
 		detector_animation.play("detection_animation")
+		velocity = Vector2()
+		
