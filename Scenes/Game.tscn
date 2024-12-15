@@ -6,9 +6,9 @@
 [node name="Game" type="Node2D"]
 
 [node name="Protagonist" parent="." instance=ExtResource("1_fofuk")]
-position = Vector2(2, -12)
+position = Vector2(-134, -12)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="enemy" parent="." instance=ExtResource("2_to067")]
-position = Vector2(132, -12)
+position = Vector2(126, -5)

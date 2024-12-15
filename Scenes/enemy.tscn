@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cqpb007w10uv0"]
+[gd_scene load_steps=48 format=3 uid="uid://cqpb007w10uv0"]
 
 [ext_resource type="Texture2D" uid="uid://boir4mni7hj1s" path="res://Assets/Factions/Knights/Troops/Pawn/Red/Pawn_Red.png" id="1_e325i"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_w6v3m"]
@@ -304,6 +304,43 @@ size = Vector2(32, 49)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45n76"]
 size = Vector2(28, 28)
 
+[sub_resource type="Animation" id="Animation_v5qes"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("detector_ray:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_twjtf"]
+resource_name = "detetion_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("detector_ray:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mi2xy"]
+_data = {
+"RESET": SubResource("Animation_v5qes"),
+"detection_animation": SubResource("Animation_twjtf")
+}
+
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_w6v3m")
 
@@ -324,5 +361,15 @@ shape = SubResource("RectangleShape2D_45n76")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="detector_animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mi2xy")
+}
+autoplay = "detection_animation"
+
+[node name="detector_ray" type="RayCast2D" parent="."]
+position = Vector2(-7.62939e-06, 7.62939e-06)
+target_position = Vector2(221, -7.62939e-06)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

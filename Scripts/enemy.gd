@@ -2,9 +2,12 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
+@onready var detector_ray: RayCast2D = $detector_ray
+@onready var detector_animation: AnimationPlayer = $detector_animation
 
-const SPEED = 100.0
+const SPEED = 90.0
 
+var lock_on=false
 var HEALTH = 100
 var DAMAGE = 20
 var flash_color = Color(0.5,0,0)
@@ -33,10 +36,25 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-	#velocity.x = SPEED
-	#move_and_slide()
+	
+	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision"):
+		print("Protagonist hit")
+		lock_on_protagonist(detector_ray.get_collider())
+	else: #no longer hitting
+		unlock_on_protagonist()
 
 
 func _on_timer_timeout() -> void:
 	animated_sprite.modulate = Color(1, 1, 1)
+	
+func lock_on_protagonist(body) -> void:
+	lock_on=true
+	detector_animation.stop()
+	var player_direction = global_position.direction_to(body.global_position)
+	detector_ray.rotation = player_direction.angle()
+
+func unlock_on_protagonist() -> void:
+	print("No more detection")
+	if lock_on:
+		lock_on = false
+		detector_animation.play("detection_animation")
