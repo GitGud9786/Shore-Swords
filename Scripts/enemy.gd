@@ -11,6 +11,8 @@ var lock_on=false
 var HEALTH = 100
 var DAMAGE = 20
 var flash_color = Color(0.5,0,0)
+var protagonist_last_loc = Vector2.ZERO
+var last_location_direction = Vector2.ZERO
 
 func get_health():
 	return HEALTH
@@ -44,7 +46,8 @@ func _process(delta: float) -> void:
 		animated_sprite.play("pawn_idle")
 	
 	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision"):
-		print("Protagonist hit")
+		protagonist_last_loc = detector_ray.get_collision_point()
+		print("Protagonist hit at ", protagonist_last_loc)
 		lock_on_protagonist(detector_ray.get_collider())
 	else: #no longer hitting
 		unlock_on_protagonist()
@@ -62,9 +65,16 @@ func lock_on_protagonist(body) -> void:
 	move_and_slide()
 
 func unlock_on_protagonist() -> void:
-	print("No more detection")
 	if lock_on:
 		lock_on = false
-		detector_animation.play("detection_animation")
-		velocity = Vector2()
+	detector_animation.play("detection_animation")
+	print("No more detection, moving to last known location")
+	if protagonist_last_loc != Vector2.ZERO:
+		if global_position.distance_to(protagonist_last_loc)<1.0:#reached location
+			velocity = Vector2.ZERO
+		else:
+			last_location_direction = global_position.direction_to(protagonist_last_loc)
+			velocity = last_location_direction * SPEED
+			print(last_location_direction," ",velocity," ",protagonist_last_loc)
+			move_and_slide()
 		
