@@ -201,6 +201,7 @@ size = Vector2(56, 66)
 size = Vector2(37, 32)
 
 [node name="Protagonist" type="CharacterBody2D"]
+z_index = 5
 script = ExtResource("1_k8e0m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

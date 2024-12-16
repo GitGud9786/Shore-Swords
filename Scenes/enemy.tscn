@@ -342,12 +342,15 @@ _data = {
 }
 
 [node name="enemy" type="CharacterBody2D"]
+z_index = 5
 script = ExtResource("1_w6v3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6xsk3")
-animation = &"pawn_running"
+animation = &"pawn_attack_1"
 autoplay = "pawn_idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]
 
