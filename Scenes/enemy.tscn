@@ -270,7 +270,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a8fte")
 }],
-"loop": true,
+"loop": false,
 "name": &"pawn_idle",
 "speed": 10.0
 }, {
@@ -347,10 +347,8 @@ script = ExtResource("1_w6v3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6xsk3")
-animation = &"pawn_attack_1"
+animation = &"pawn_idle"
 autoplay = "pawn_idle"
-frame = 5
-frame_progress = 1.0
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]
 

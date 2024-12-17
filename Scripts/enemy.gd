@@ -16,6 +16,7 @@ var DAMAGE = 20
 var flash_color = Color(0.5,0,0)
 var protagonist_last_loc = Vector2.ZERO
 var last_location_direction = Vector2.ZERO
+var dead= false
 
 func get_health():
 	return HEALTH
@@ -26,6 +27,10 @@ func get_damage():
 func take_damage(damage):
 	HEALTH -= damage
 	if HEALTH<=0:
+		dead=true
+		attack_mode=false
+		velocity = Vector2.ZERO
+		print("Pawn killed")
 		animated_sprite.play("pawn_dead")
 		await get_tree().create_timer(1.4).timeout
 		queue_free()
@@ -42,19 +47,19 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	if velocity != Vector2.ZERO and attack_mode==false:
+	if velocity != Vector2.ZERO and attack_mode==false and dead==false:
 		animated_sprite.play("pawn_running")
+		#print("Running animation playing")
 		animated_sprite.flip_h = velocity.x < 0
 		attack_area_collision.scale = -abs(attack_area_collision.scale) if velocity.x < 0 else abs(attack_area_collision.scale)
-
-
-	else:
+		
+	elif dead==false and attack_mode==false:
 		animated_sprite.play("pawn_idle")
 	
-	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision"):
+	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision") and dead==false:
 		protagonist_last_loc = detector_ray.get_collision_point()
 		lock_on_protagonist(detector_ray.get_collider())
-	else: #no longer hitting
+	elif dead==false: #no longer hitting
 		unlock_on_protagonist()
 
 
@@ -62,11 +67,9 @@ func _on_timer_timeout() -> void:
 	animated_sprite.modulate = Color(1, 1, 1)
 	
 func lock_on_protagonist(body) -> void: #WORK NEXT HERE TO MAKE ENEMY ATTACK THE PROTAGONIST
-	if global_position.distance_to(body.global_position)<50.0:
-		attack_mode=true
-		velocity = Vector2.ZERO
-		print("Enemy attacking")
-		animated_sprite.play("pawn_attack_1")
+	if global_position.distance_to(body.global_position)<40.0:
+		attack_protagonist()
+		
 	else:
 		lock_on=true
 		attack_mode=false
@@ -87,4 +90,9 @@ func unlock_on_protagonist() -> void:
 			last_location_direction = global_position.direction_to(protagonist_last_loc)
 			velocity = last_location_direction * SPEED
 			move_and_slide()
-		
+	
+func attack_protagonist() -> void:
+		attack_mode=true
+		velocity = Vector2.ZERO
+		animated_sprite.play("pawn_attack_1")
+		print("Enemy attacking")
