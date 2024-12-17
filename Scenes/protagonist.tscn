@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://br2ijn5u1puis"]
+[gd_scene load_steps=45 format=3 uid="uid://br2ijn5u1puis"]
 
 [ext_resource type="Texture2D" uid="uid://ppal275oky4v" path="res://Assets/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="1_fchcs"]
 [ext_resource type="Script" path="res://Scripts/protagonist.gd" id="1_k8e0m"]
+[ext_resource type="Texture2D" uid="uid://gmfav5nqmgix" path="res://Assets/Factions/Knights/Troops/Dead/Dead.png" id="3_c6q8u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g08ea"]
 atlas = ExtResource("1_fchcs")
@@ -50,6 +51,62 @@ region = Rect2(768, 576, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gel5i"]
 atlas = ExtResource("1_fchcs")
 region = Rect2(960, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evn3o"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5dla"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyblw"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6uhj"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s303g"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avsge"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk7cy"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o2sg"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs0vs"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fxfi"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olg4o"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyxue"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3xu7"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cot7l"]
+atlas = ExtResource("3_c6q8u")
+region = Rect2(768, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5f25"]
 atlas = ExtResource("1_fchcs")
@@ -149,6 +206,53 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_evn3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5dla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyblw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6uhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s303g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avsge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wk7cy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o2sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs0vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fxfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olg4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyxue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3xu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cot7l")
+}],
+"loop": true,
+"name": &"knight_dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j5f25")
 }, {
 "duration": 1.0,
@@ -206,7 +310,7 @@ script = ExtResource("1_k8e0m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5a6hd")
-animation = &"knight_attack_1"
+animation = &"knight_dead"
 autoplay = "knight_idle"
 
 [node name="area_collision" type="Area2D" parent="AnimatedSprite2D"]
@@ -219,5 +323,8 @@ shape = SubResource("RectangleShape2D_ok3tt")
 [node name="protagonist_body_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_72ndm")
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="AnimatedSprite2D/area_collision" to="." method="_on_area_collision_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

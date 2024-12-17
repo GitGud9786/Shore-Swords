@@ -67,10 +67,10 @@ func _on_timer_timeout() -> void:
 	animated_sprite.modulate = Color(1, 1, 1)
 	
 func lock_on_protagonist(body) -> void: #WORK NEXT HERE TO MAKE ENEMY ATTACK THE PROTAGONIST
-	if global_position.distance_to(body.global_position)<40.0:
+	if global_position.distance_to(body.global_position)<40.0 and !body.get_death_status():
 		attack_protagonist()
 		
-	else:
+	elif !body.get_death_status():
 		lock_on=true
 		attack_mode=false
 		detector_animation.stop()
@@ -92,7 +92,23 @@ func unlock_on_protagonist() -> void:
 			move_and_slide()
 	
 func attack_protagonist() -> void:
-		attack_mode=true
-		velocity = Vector2.ZERO
-		animated_sprite.play("pawn_attack_1")
-		print("Enemy attacking")
+	attack_area_collision.monitoring=true
+	attack_mode=true
+	velocity = Vector2.ZERO
+	animated_sprite.play("pawn_attack_1")
+	#print("Enemy attacking")
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite.animation == "pawn_attack_1":
+		animated_sprite.play("pawn_idle")
+		attack_area_collision.monitoring = false
+		
+
+func _on_attack_area_collision_body_entered(body: Node2D) -> void:
+	if body.get_node("protagonist_body_collision"):
+		if(await body.take_damage(20)):
+			detector_ray.enabled=false
+			attack_mode=false
+			animated_sprite.play("pawn_idle")
+		print("You are under attack, HP LEFT: ",body.get_health())
