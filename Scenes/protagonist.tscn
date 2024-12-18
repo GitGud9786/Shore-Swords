@@ -301,16 +301,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ok3tt"]
 size = Vector2(56, 66)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_72ndm"]
-size = Vector2(37, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ls0kv"]
+radius = 15.0
 
 [node name="Protagonist" type="CharacterBody2D"]
 z_index = 5
+y_sort_enabled = true
 script = ExtResource("1_k8e0m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5a6hd")
-animation = &"knight_dead"
+animation = &"knight_idle"
 autoplay = "knight_idle"
 
 [node name="area_collision" type="Area2D" parent="AnimatedSprite2D"]
@@ -321,7 +322,8 @@ position = Vector2(48, 0)
 shape = SubResource("RectangleShape2D_ok3tt")
 
 [node name="protagonist_body_collision" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_72ndm")
+position = Vector2(0, 11)
+shape = SubResource("CircleShape2D_ls0kv")
 
 [node name="Timer" type="Timer" parent="."]
 

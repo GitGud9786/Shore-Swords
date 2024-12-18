@@ -301,8 +301,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wnam"]
 size = Vector2(32, 49)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_45n76"]
-size = Vector2(28, 28)
+[sub_resource type="CircleShape2D" id="CircleShape2D_wm507"]
+radius = 13.0
 
 [sub_resource type="Animation" id="Animation_v5qes"]
 length = 0.001
@@ -343,6 +343,7 @@ _data = {
 
 [node name="enemy" type="CharacterBody2D"]
 z_index = 5
+y_sort_enabled = true
 script = ExtResource("1_w6v3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -358,7 +359,8 @@ position = Vector2(38, 0)
 shape = SubResource("RectangleShape2D_5wnam")
 
 [node name="body_collision" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_45n76")
+position = Vector2(1, 5)
+shape = SubResource("CircleShape2D_wm507")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -372,6 +374,7 @@ autoplay = "detection_animation"
 
 [node name="detector_ray" type="RayCast2D" parent="."]
 position = Vector2(-7.62939e-06, 7.62939e-06)
+enabled = false
 target_position = Vector2(221, -7.62939e-06)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
