@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvtypihj7sslk"]
+[gd_scene load_steps=10 format=3 uid="uid://bvtypihj7sslk"]
 
 [ext_resource type="Texture2D" uid="uid://bynjrb4n4ccco" path="res://Assets/Terrain/Ground/Tilemap_Elevation.png" id="1_askxx"]
 [ext_resource type="Texture2D" uid="uid://jafemfbl5ya1" path="res://Assets/Terrain/Ground/Tilemap_Flat.png" id="2_n174n"]
 [ext_resource type="Texture2D" uid="uid://70ptmchv41k3" path="res://Assets/Terrain/Ground/Shadows.png" id="3_h86j1"]
+[ext_resource type="Texture2D" uid="uid://dusi55t11vntr" path="res://Assets/Terrain/Bridge/Bridge_All.png" id="5_fhb00"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6dvxo"]
 texture = ExtResource("1_askxx")
@@ -104,14 +105,44 @@ texture_region_size = Vector2i(64, 64)
 2:1/0 = 0
 1:2/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kwv4s"]
+texture = ExtResource("5_fhb00")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -26.1818, -8.72727, -26.1818, -8.72727, -14.5455, 8.72727, -14.5455, 32, -20.3636)
+0:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(8.72727, 8.72727, -8.72727, 8.72727, -8.72727, 20.3636, 32, 20.3636, 32, 14.5455)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -20.3636, 32, -20.3636, 32, -26.1818, -32, -26.1818)
+1:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-32, 20.3636, -32, 14.5455, 32, 14.5455, 32, 20.3636)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -26.1818, 8.72727, -26.1818, 8.72727, -14.5455, -8.72727, -14.5455, -32, -20.3636)
+2:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-8.72727, 8.72727, 8.72727, 8.72727, 8.72727, 20.3636, -32, 20.3636, -32, 14.5455)
+2:0/0/physics_layer_0/polygon_2/points = PackedVector2Array(8.72727, 8.72727, 8.72727, -14.5455, 2.90909, -14.5455, 2.90909, 8.72727)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(26.1818, 32, 32, -8.72727, 14.5455, -8.72727, 20.3636, 14.5455, 20.3636, 32)
+0:1/0/physics_layer_0/polygon_1/points = PackedVector2Array(-20.3636, 14.5455, -14.5455, -8.72727, -32, -8.72727, -26.1818, 32, -20.3636, 32)
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(20.3636, -32, 20.3636, 32, 26.1818, 32, 26.1818, -32)
+0:2/0/physics_layer_0/polygon_1/points = PackedVector2Array(-26.1818, -32, -20.3636, -32, -20.3636, 32, -26.1818, 32)
+1:2/0 = 0
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(26.1818, -32, 32, 2.90909, 14.5455, 2.90909, 14.5455, -14.5455, 20.3636, -32)
+0:3/0/physics_layer_0/polygon_1/points = PackedVector2Array(-14.5455, -14.5455, -14.5455, 2.90909, -32, 2.90909, -26.1818, -32, -20.3636, -32)
+0:3/0/physics_layer_0/polygon_2/points = PackedVector2Array(14.5455, 2.90909, -14.5455, 2.90909, -14.5455, -2.90909, 14.5455, -2.90909)
+2:3/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_ckok2"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/3 = SubResource("TileSetAtlasSource_6dvxo")
 sources/4 = SubResource("TileSetAtlasSource_s71v0")
 sources/5 = SubResource("TileSetAtlasSource_o0smu")
+sources/6 = SubResource("TileSetAtlasSource_kwv4s")
 
 [node name="TileMap" type="TileMap"]
+z_index = 1
 tile_set = SubResource("TileSet_ckok2")
 format = 2
 layer_0/name = "Ground"

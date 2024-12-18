@@ -45,10 +45,9 @@ z_index = 5
 y_sort_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_jeylu")
 autoplay = "default"
-frame = 2
-frame_progress = 0.696186
 offset = Vector2(0, -50)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

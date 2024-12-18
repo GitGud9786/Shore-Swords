@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dou4n7hghg1g2"]
+
+[ext_resource type="Texture2D" uid="uid://co4174i2xcugt" path="res://Assets/Terrain/Water/Foam/Foam.png" id="1_r0hq2"]
+[ext_resource type="Texture2D" uid="uid://8pikepyrfqww" path="res://Assets/Terrain/Water/Rocks/Rocks_01.png" id="2_lutly"]
+[ext_resource type="Texture2D" uid="uid://db4hqnaitcxpd" path="res://Assets/Terrain/Water/Water.png" id="3_a0vtp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dht2x"]
+texture = ExtResource("1_r0hq2")
+texture_region_size = Vector2i(192, 192)
+0:0/animation_speed = 10.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u3shr"]
+texture = ExtResource("2_lutly")
+texture_region_size = Vector2i(128, 128)
+0:0/animation_speed = 10.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h4ym6"]
+texture = ExtResource("3_a0vtp")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4givo"]
+tile_size = Vector2i(8, 8)
+sources/2 = SubResource("TileSetAtlasSource_dht2x")
+sources/3 = SubResource("TileSetAtlasSource_u3shr")
+sources/4 = SubResource("TileSetAtlasSource_h4ym6")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_4givo")
+format = 2
+layer_0/name = "Rocks"
+layer_1/name = "Foam"
+layer_2/name = "Water"

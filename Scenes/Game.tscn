@@ -3,21 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://br2ijn5u1puis" path="res://Scenes/protagonist.tscn" id="1_fofuk"]
 [ext_resource type="PackedScene" uid="uid://cqpb007w10uv0" path="res://Scenes/enemy.tscn" id="2_to067"]
 [ext_resource type="PackedScene" uid="uid://bvtypihj7sslk" path="res://Scenes/map.tscn" id="3_mwxl7"]
-[ext_resource type="PackedScene" uid="uid://c3hdf8ldwvv4x" path="res://Scenes/tree.tscn" id="4_dyf0w"]
+[ext_resource type="PackedScene" uid="uid://dou4n7hghg1g2" path="res://Scenes/water_map.tscn" id="6_b4qwr"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Protagonist" parent="." instance=ExtResource("1_fofuk")]
+visible = false
 position = Vector2(-134, 217)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Protagonist"]
+position = Vector2(134, -217)
 
 [node name="enemy" parent="." instance=ExtResource("2_to067")]
+visible = false
 position = Vector2(126, -5)
 
 [node name="TileMap" parent="." instance=ExtResource("3_mwxl7")]
-position = Vector2(51, 4)
 
-[node name="Tree" parent="." instance=ExtResource("4_dyf0w")]
-position = Vector2(-280, -135)
+[node name="water_map" parent="." instance=ExtResource("6_b4qwr")]
