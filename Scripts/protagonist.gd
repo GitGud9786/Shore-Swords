@@ -88,9 +88,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func _on_area_collision_body_entered(body: Node2D) -> void:
-	print("Enemy hit successful")
-	body.take_damage(20)
-	print(body.get_health())
+	if body.get_node("body_collision"):
+		print("Enemy hit successful")
+		body.take_damage(20)
+		print(body.get_health())
 
 
 func _on_timer_timeout() -> void:
