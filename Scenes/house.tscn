@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://de72k0t0kdcad"]
+
+[ext_resource type="Texture2D" uid="uid://dd6lg87fvdg4w" path="res://Assets/Factions/Knights/Buildings/House/House_Red.png" id="1_gi11h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs4ns"]
+atlas = ExtResource("1_gi11h")
+region = Rect2(0, 0, 128, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xbwv8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs4ns")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6grpd"]
+size = Vector2(102, 80.5)
+
+[node name="house" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_xbwv8")
+offset = Vector2(0, -40)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_6grpd")
