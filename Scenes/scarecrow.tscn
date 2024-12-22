@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6pwtoc0khis6"]
+
+[ext_resource type="Texture2D" uid="uid://blw5oqwromjno" path="res://Assets/Deco/18.png" id="1_iusd8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srg6j"]
+atlas = ExtResource("1_iusd8")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5285u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srg6j")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww1ik"]
+size = Vector2(30, 23)
+
+[node name="scarecrow" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_5285u")
+offset = Vector2(0, -30)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_ww1ik")

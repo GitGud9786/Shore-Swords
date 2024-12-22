@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5dm3n8sp7kju"]
+
+[ext_resource type="Texture2D" uid="uid://bmxw1hwhg6vlh" path="res://Assets/Deco/04.png" id="1_1wnno"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ufky"]
+atlas = ExtResource("1_1wnno")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2fcx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ufky")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="small_stone" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i2fcx")
+offset = Vector2(0, 40)

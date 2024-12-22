@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbyccgqcupgyv"]
+
+[ext_resource type="Texture2D" uid="uid://ckohecur8b0qf" path="res://Assets/Deco/16.png" id="1_gadew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsilo"]
+atlas = ExtResource("1_gadew")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4lshu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsilo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wo3us"]
+size = Vector2(10, 10)
+
+[node name="Death Sign" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_4lshu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_wo3us")

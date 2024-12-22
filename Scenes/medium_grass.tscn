@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://deg064j4snopj"]
+
+[ext_resource type="Texture2D" uid="uid://bamk67wtqyldg" path="res://Assets/Deco/08.png" id="1_r2ylh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fguy"]
+atlas = ExtResource("1_r2ylh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q8y68"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fguy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="medium_grass" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q8y68")
+offset = Vector2(0, 20)
