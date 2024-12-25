@@ -17,6 +17,8 @@ var flash_color = Color(0.5,0,0)
 var protagonist_last_loc = Vector2.ZERO
 var last_location_direction = Vector2.ZERO
 var dead= false
+var start_attack_frame = 3
+var end_attack_frame = 5
 
 func get_health():
 	return HEALTH
@@ -56,10 +58,10 @@ func _process(delta: float) -> void:
 	elif dead==false and attack_mode==false:
 		animated_sprite.play("pawn_idle")
 	
-	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision") and dead==false:
+	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision") and dead==false and attack_mode==false:
 		protagonist_last_loc = detector_ray.get_collision_point()
 		lock_on_protagonist(detector_ray.get_collider())
-	elif dead==false: #no longer hitting
+	elif dead==false and attack_mode==false: #no longer hitting
 		unlock_on_protagonist()
 
 
@@ -92,7 +94,6 @@ func unlock_on_protagonist() -> void:
 			move_and_slide()
 	
 func attack_protagonist() -> void:
-	attack_area_collision.monitoring=true
 	attack_mode=true
 	velocity = Vector2.ZERO
 	animated_sprite.play("pawn_attack_1")
@@ -102,13 +103,21 @@ func attack_protagonist() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "pawn_attack_1":
 		animated_sprite.play("pawn_idle")
-		attack_area_collision.monitoring = false
+		attack_mode=false
 		
 
 func _on_attack_area_collision_body_entered(body: Node2D) -> void:
 	if body.get_node("protagonist_body_collision"):
-		if(await body.take_damage(20)):
+		if(await body.take_damage(20)): #the player has died
 			detector_ray.enabled=false
 			attack_mode=false
 			animated_sprite.play("pawn_idle")
 		print("You are under attack, HP LEFT: ",body.get_health())
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if animated_sprite.animation == "pawn_attack_1":
+		if animated_sprite.frame == start_attack_frame:
+			attack_area_collision.monitoring=true
+		elif animated_sprite.frame == end_attack_frame:
+			attack_area_collision.monitoring = false

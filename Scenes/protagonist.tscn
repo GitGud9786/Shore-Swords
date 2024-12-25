@@ -311,7 +311,7 @@ script = ExtResource("1_k8e0m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5a6hd")
-animation = &"knight_idle"
+animation = &"knight_attack_2"
 autoplay = "knight_idle"
 
 [node name="area_collision" type="Area2D" parent="AnimatedSprite2D"]
@@ -327,7 +327,10 @@ position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_ls0kv")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AnimatedSprite2D/area_collision" to="." method="_on_area_collision_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

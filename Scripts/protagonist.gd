@@ -8,6 +8,8 @@ var input_enabled = 1
 var HEALTH = 100
 var flash_color = Color(0.5,0,0)
 var dead=false
+var start_attack_frame = 3
+var end_attack_frame = 5
 
 const SPEED = 120
 const DAMAGE= 50
@@ -23,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("attack") and !dead:#initiate attack
 		input_enabled= 0
-		area_collision.monitoring=true
+		#area_collision.monitoring=true
 		var attack_type = randi() % 2 + 1
 		animated_sprite.play("knight_attack_"+str(attack_type))
 	
@@ -83,7 +85,6 @@ func take_damage(damage) -> bool:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "knight_attack_1" or animated_sprite.animation == "knight_attack_2":
 		input_enabled= 1
-		area_collision.monitoring=false
 		animated_sprite.play("knight_idle")
 
 
@@ -92,6 +93,14 @@ func _on_area_collision_body_entered(body: Node2D) -> void:
 		print("Enemy hit successful")
 		body.take_damage(20)
 		print(body.get_health())
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if animated_sprite.animation == "knight_attack_1" or animated_sprite.animation == "knight_attack_2":
+		if animated_sprite.frame == start_attack_frame:
+			area_collision.monitoring=true
+		elif animated_sprite.frame == end_attack_frame:
+			area_collision.monitoring=false
 
 
 func _on_timer_timeout() -> void:

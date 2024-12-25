@@ -350,6 +350,8 @@ script = ExtResource("1_w6v3m")
 sprite_frames = SubResource("SpriteFrames_6xsk3")
 animation = &"pawn_idle"
 autoplay = "pawn_idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]
 monitoring = false
@@ -364,7 +366,7 @@ position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_wm507")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 
 [node name="detector_animation" type="AnimationPlayer" parent="."]
@@ -378,5 +380,6 @@ position = Vector2(-7.62939e-06, 7.62939e-06)
 target_position = Vector2(221, -7.62939e-06)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AnimatedSprite2D/attack_area_collision" to="." method="_on_attack_area_collision_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

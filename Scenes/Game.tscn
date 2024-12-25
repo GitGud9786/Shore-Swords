@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://tdgvwf061pcb"]
+[gd_scene load_steps=13 format=3 uid="uid://tdgvwf061pcb"]
 
 [ext_resource type="PackedScene" uid="uid://br2ijn5u1puis" path="res://Scenes/protagonist.tscn" id="1_fofuk"]
 [ext_resource type="PackedScene" uid="uid://bvtypihj7sslk" path="res://Scenes/map.tscn" id="3_mwxl7"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://de72k0t0kdcad" path="res://Scenes/house.tscn" id="7_v2m4n"]
 [ext_resource type="PackedScene" uid="uid://bbyccgqcupgyv" path="res://Scenes/death_sign.tscn" id="8_salu8"]
 [ext_resource type="PackedScene" uid="uid://d32pnovit8o40" path="res://Scenes/wood.tscn" id="11_wp3xe"]
+[ext_resource type="PackedScene" uid="uid://cqpb007w10uv0" path="res://Scenes/enemy.tscn" id="12_pfjgj"]
 
 [node name="Level 1" type="Node2D"]
 y_sort_enabled = true
@@ -443,3 +444,6 @@ rotation = 4.06836
 [node name="wood3" parent="Wood Planks" instance=ExtResource("11_wp3xe")]
 position = Vector2(-495, -593)
 rotation = -0.240855
+
+[node name="enemy" parent="." instance=ExtResource("12_pfjgj")]
+position = Vector2(421, -556)
