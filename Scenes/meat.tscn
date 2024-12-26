@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbsd2rudcjfjr"]
+
+[ext_resource type="Script" path="res://Scripts/meat.gd" id="1_60s7d"]
+[ext_resource type="Texture2D" uid="uid://bv0oem7my24rn" path="res://Assets/Resources/Resources/M_Idle.png" id="1_rdwg5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eor5m"]
+atlas = ExtResource("1_rdwg5")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r82h3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eor5m")
+}],
+"loop": false,
+"name": &"meat_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kp6q3"]
+radius = 18.0278
+
+[node name="meat" type="Node2D"]
+z_index = 5
+script = ExtResource("1_60s7d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, -12)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_r82h3")
+animation = &"meat_idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kp6q3")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

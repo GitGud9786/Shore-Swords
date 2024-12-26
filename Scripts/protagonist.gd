@@ -57,6 +57,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	#print(x_direction," ", y_direction," ",input_enabled)
 
+func regen_health(health):
+	HEALTH += 40
+	print("Health: ", HEALTH)
+
 func get_health():
 	return HEALTH
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://tdgvwf061pcb"]
+[gd_scene load_steps=14 format=3 uid="uid://tdgvwf061pcb"]
 
 [ext_resource type="PackedScene" uid="uid://br2ijn5u1puis" path="res://Scenes/protagonist.tscn" id="1_fofuk"]
 [ext_resource type="PackedScene" uid="uid://bvtypihj7sslk" path="res://Scenes/map.tscn" id="3_mwxl7"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bbyccgqcupgyv" path="res://Scenes/death_sign.tscn" id="8_salu8"]
 [ext_resource type="PackedScene" uid="uid://d32pnovit8o40" path="res://Scenes/wood.tscn" id="11_wp3xe"]
 [ext_resource type="PackedScene" uid="uid://cqpb007w10uv0" path="res://Scenes/enemy.tscn" id="12_pfjgj"]
+[ext_resource type="PackedScene" uid="uid://cbsd2rudcjfjr" path="res://Scenes/meat.tscn" id="13_l6qed"]
 
 [node name="Level 1" type="Node2D"]
 y_sort_enabled = true
@@ -234,21 +235,6 @@ position = Vector2(-1089, -436)
 [node name="house4" parent="Houses" instance=ExtResource("7_v2m4n")]
 position = Vector2(-511, -618)
 
-[node name="Scarecrow" parent="." instance=ExtResource("7_2dj03")]
-position = Vector2(285, -245)
-
-[node name="Scarecrow2" parent="." instance=ExtResource("7_2dj03")]
-position = Vector2(-1870, -769)
-
-[node name="Death Sign" parent="." instance=ExtResource("8_salu8")]
-position = Vector2(285, -815)
-
-[node name="Death Sign2" parent="." instance=ExtResource("8_salu8")]
-position = Vector2(-1321, -1525)
-
-[node name="Death Sign3" parent="." instance=ExtResource("8_salu8")]
-position = Vector2(281, -1830)
-
 [node name="Bushes" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -445,5 +431,76 @@ rotation = 4.06836
 position = Vector2(-495, -593)
 rotation = -0.240855
 
-[node name="enemy" parent="." instance=ExtResource("12_pfjgj")]
-position = Vector2(421, -556)
+[node name="Scarecrows" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Scarecrow" parent="Scarecrows" instance=ExtResource("7_2dj03")]
+position = Vector2(285, -245)
+
+[node name="Scarecrow2" parent="Scarecrows" instance=ExtResource("7_2dj03")]
+position = Vector2(-1870, -769)
+
+[node name="Death Signs" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Death Sign" parent="Death Signs" instance=ExtResource("8_salu8")]
+position = Vector2(285, -815)
+
+[node name="Death Sign2" parent="Death Signs" instance=ExtResource("8_salu8")]
+position = Vector2(-1321, -1525)
+
+[node name="Death Sign3" parent="Death Signs" instance=ExtResource("8_salu8")]
+position = Vector2(281, -1830)
+
+[node name="Enemy" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="enemy" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(154, -581)
+
+[node name="enemy2" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(647, -981)
+
+[node name="enemy3" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(-662, -1062)
+
+[node name="enemy4" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(-917, -1165)
+
+[node name="enemy5" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(-934, -2134)
+
+[node name="enemy6" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(-134, -1898)
+
+[node name="enemy7" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(154, -1604)
+
+[node name="enemy8" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(-896, -1447)
+
+[node name="enemy9" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(-1422, -769)
+
+[node name="enemy10" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(-1741, -842)
+
+[node name="enemy11" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(-603, -555)
+
+[node name="enemy12" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(-998, -617)
+
+[node name="enemy13" parent="Enemy" instance=ExtResource("12_pfjgj")]
+position = Vector2(23, -1272)
+
+[node name="Meat" type="Node2D" parent="."]
+
+[node name="meat" parent="Meat" instance=ExtResource("13_l6qed")]
+position = Vector2(-23, -937)
+
+[node name="meat2" parent="Meat" instance=ExtResource("13_l6qed")]
+position = Vector2(-1042, -1802)
+
+[node name="meat3" parent="Meat" instance=ExtResource("13_l6qed")]
+position = Vector2(-1628, -1375)
