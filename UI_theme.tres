@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://d8yk7wl1m04h"]
+
+[ext_resource type="FontFile" uid="uid://pc3evpmqixru" path="res://Assets/Fonts/Xirod.otf" id="1_s4ll4"]
+[ext_resource type="FontFile" uid="uid://df685y0lcl5s6" path="res://Assets/Fonts/pdark.ttf" id="1_ylhls"]
+
+[resource]
+default_font = ExtResource("1_s4ll4")
+default_font_size = 0
+Button/colors/font_color = Color(0.709291, 0, 0.117275, 1)
+Button/colors/font_focus_color = Color(7.94157e-07, 0.438715, 0.325381, 1)
+Button/colors/font_hover_color = Color(6.01634e-07, 0.231927, 0.33565, 1)
+Button/colors/font_pressed_color = Color(0, 0.231373, 0.337255, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 0)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Label/colors/font_color = Color(0.89089, 0.570225, 7.70092e-07, 1)
+Label/fonts/font = ExtResource("1_ylhls")

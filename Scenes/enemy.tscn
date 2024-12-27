@@ -270,7 +270,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a8fte")
 }],
-"loop": false,
+"loop": true,
 "name": &"pawn_idle",
 "speed": 10.0
 }, {
@@ -293,7 +293,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lmlhg")
 }],
-"loop": false,
+"loop": true,
 "name": &"pawn_running",
 "speed": 10.0
 }]
@@ -350,6 +350,8 @@ script = ExtResource("1_w6v3m")
 sprite_frames = SubResource("SpriteFrames_6xsk3")
 animation = &"pawn_idle"
 autoplay = "pawn_idle"
+frame = 3
+frame_progress = 0.222841
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]
 monitoring = false
