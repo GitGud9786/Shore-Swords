@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://tdgvwf061pcb"]
+[gd_scene load_steps=15 format=3 uid="uid://tdgvwf061pcb"]
 
 [ext_resource type="PackedScene" uid="uid://br2ijn5u1puis" path="res://Scenes/protagonist.tscn" id="1_fofuk"]
 [ext_resource type="PackedScene" uid="uid://bvtypihj7sslk" path="res://Scenes/map.tscn" id="3_mwxl7"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d32pnovit8o40" path="res://Scenes/wood.tscn" id="11_wp3xe"]
 [ext_resource type="PackedScene" uid="uid://cqpb007w10uv0" path="res://Scenes/enemy.tscn" id="12_pfjgj"]
 [ext_resource type="PackedScene" uid="uid://cbsd2rudcjfjr" path="res://Scenes/meat.tscn" id="13_l6qed"]
+[ext_resource type="PackedScene" uid="uid://ewsxnk6xn3p5" path="res://Scenes/tnt_goblin.tscn" id="14_ywn27"]
 
 [node name="Level 1" type="Node2D"]
 y_sort_enabled = true
@@ -504,3 +505,6 @@ position = Vector2(-1042, -1802)
 
 [node name="meat3" parent="Meat" instance=ExtResource("13_l6qed")]
 position = Vector2(-1628, -1375)
+
+[node name="tnt_goblin" parent="." instance=ExtResource("14_ywn27")]
+position = Vector2(243, -574)
