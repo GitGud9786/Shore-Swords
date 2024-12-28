@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var timer: Timer = $Timer
 @onready var detector_ray: RayCast2D = $detector_ray
 @onready var detector_animation: AnimationPlayer = $detector_animation
+@onready var tnt: PackedScene = preload("res://Scenes/tnt.tscn")
 
 const SPEED = 90.0
 
@@ -15,6 +16,7 @@ var lock_on=false
 var flash_color = Color(0.5,0,0)
 var protagonist_last_loc = Vector2.ZERO
 var last_location_direction = Vector2.ZERO
+var throw_frame = 2
 
 func get_health():
 	return HEALTH
@@ -38,7 +40,8 @@ func take_damage(damage):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if tnt==null:
+		print("cannot loadz")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -87,9 +90,23 @@ func attack_protagonist() -> void:
 	velocity = Vector2.ZERO
 	animated_sprite.play("tnt_attacking")
 	#print("Enemy attacking")
+	
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "tnt_attacking":
 		animated_sprite.play("tnt_idle")
 		attack_mode=false
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if animated_sprite.animation=="tnt_attacking":
+		if animated_sprite.frame == throw_frame:
+			var tnt_instance = tnt.instantiate()
+			tnt_instance.global_position = global_position
+			get_parent().add_child(tnt_instance)
+			tnt_instance.set_landing_location(protagonist_last_loc)
+
+
+func _on_timer_timeout() -> void:
+	animated_sprite.modulate = Color(1, 1, 1)

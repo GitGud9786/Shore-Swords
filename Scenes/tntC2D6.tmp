@@ -131,7 +131,7 @@ script = ExtResource("1_2u5d6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hjqkx")
-animation = &"tnt_live"
+animation = &"tnt_explode"
 autoplay = "tnt_live"
 
 [node name="attack_area_collision" type="Area2D" parent="."]
