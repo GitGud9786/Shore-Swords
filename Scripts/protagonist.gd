@@ -44,18 +44,18 @@ func _physics_process(delta: float) -> void:
 	if x_direction==0 and y_direction==0 and input_enabled and !dead:#fully still
 		animated_sprite.play("knight_idle")
 	
-	if x_direction and !dead:
-		velocity.x = x_direction * SPEED * input_enabled
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
-	if y_direction and !dead:
-		velocity.y = y_direction * SPEED * input_enabled
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
-
+	var velocity_x = x_direction * SPEED * input_enabled
+	var velocity_y = y_direction * SPEED * input_enabled
+	
+	if velocity_x != 0 and velocity_y != 0:
+		var velocity_length = sqrt(velocity_x * velocity_x + velocity_y * velocity_y)
+		velocity_x = velocity_x / velocity_length * SPEED * input_enabled
+		velocity_y = velocity_y / velocity_length * SPEED * input_enabled
+	
+	# Apply the velocity values to the character
+	velocity.x = velocity_x
+	velocity.y = velocity_y
 	move_and_slide()
-	#print(x_direction," ", y_direction," ",input_enabled)
 
 func regen_health(health):
 	HEALTH += 40
