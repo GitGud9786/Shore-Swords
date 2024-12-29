@@ -17,6 +17,9 @@ var flash_color = Color(0.5,0,0)
 var protagonist_last_loc = Vector2.ZERO
 var last_location_direction = Vector2.ZERO
 var throw_frame = 2
+var can_attack = true
+
+var tnt_instance : Node2D = null
 
 func get_health():
 	return HEALTH
@@ -40,15 +43,12 @@ func take_damage(damage):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if tnt==null:
-		print("cannot loadz")
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if velocity != Vector2.ZERO and attack_mode==false and dead==false:
 		animated_sprite.play("tnt_running")
-		#print("Running animation playing")
 		animated_sprite.flip_h = velocity.x < 0
 		
 	elif dead==false and attack_mode==false:
@@ -64,14 +64,20 @@ func lock_on_protagonist(body) -> void:
 	detector_animation.playback_active = false
 	var player_direction = global_position.direction_to(body.global_position)
 	detector_ray.rotation = player_direction.angle()
-	if global_position.distance_to(body.global_position)<200.0 and !body.get_death_status():
+	if global_position.distance_to(body.global_position)<200.0 and !body.get_death_status() and can_attack:
+		can_attack=false
 		attack_protagonist()
+		
+	elif not can_attack:
+		velocity=Vector2.ZERO
+		animated_sprite.play("tnt_idle")
 		
 	elif !body.get_death_status():
 		lock_on=true
 		attack_mode=false
 		velocity = SPEED * player_direction
 		move_and_slide()
+	
 
 func unlock_on_protagonist() -> void:
 	if lock_on:
@@ -86,23 +92,23 @@ func unlock_on_protagonist() -> void:
 			move_and_slide()
 	
 func attack_protagonist() -> void:
-	attack_mode=true
+	attack_mode = true
 	velocity = Vector2.ZERO
 	animated_sprite.play("tnt_attacking")
-	#print("Enemy attacking")
 	
-
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "tnt_attacking":
 		animated_sprite.play("tnt_idle")
 		attack_mode=false
+		await get_tree().create_timer(1.5).timeout
+		can_attack=true
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if animated_sprite.animation=="tnt_attacking":
 		if animated_sprite.frame == throw_frame:
-			var tnt_instance = tnt.instantiate()
+			tnt_instance = tnt.instantiate()
 			tnt_instance.global_position = global_position
 			get_parent().add_child(tnt_instance)
 			tnt_instance.set_landing_location(protagonist_last_loc)

@@ -314,6 +314,7 @@ position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_4j0f8")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
 
 [node name="detector_animation" type="AnimationPlayer" parent="."]
 libraries = {
