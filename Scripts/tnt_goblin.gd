@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var detector_animation: AnimationPlayer = $detector_animation
 @onready var tnt: PackedScene = preload("res://Scenes/tnt.tscn")
 
-const SPEED = 90.0
+const SPEED = 80.0
 
 var HEALTH = 100
 var DAMAGE = 40
@@ -57,6 +57,7 @@ func _process(delta: float) -> void:
 	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision") and dead==false and attack_mode==false:
 		protagonist_last_loc = detector_ray.get_collision_point()
 		lock_on_protagonist(detector_ray.get_collider())
+		animated_sprite.flip_h = detector_ray.get_collision_point().x < detector_ray.global_position.x
 	elif dead==false and attack_mode==false: #no longer hitting
 		unlock_on_protagonist()
 

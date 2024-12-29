@@ -4,11 +4,13 @@ extends CharacterBody2D
 @onready var attack_area_collision: Area2D = $attack_area_collision
 
 var landing_location = Vector2.ZERO
-var SPEED = 150
+var SPEED = 250
+var ROTATION_SPEED = 2.0
 var DAMAGE = 10
 var explode_start_frame = 2
 var explode_end_frame = 4
 var explosion_end = false
+var direction = Vector2.ZERO
 
 func get_explode_status():
 	return explosion_end
@@ -25,8 +27,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if global_position.distance_to(landing_location)>5.0:
 		print("Came here")
-		velocity = global_position.direction_to(landing_location) * SPEED
+		direction = global_position.direction_to(landing_location)
+		velocity = direction * SPEED
 		move_and_slide()
+		rotation += delta * ROTATION_SPEED
+		
 	else: #reached target location
 		velocity = Vector2.ZERO
 		animated_sprite.play("tnt_explode")
