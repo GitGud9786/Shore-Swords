@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 var landing_location = Vector2.ZERO
 var SPEED = 250
-var ROTATION_SPEED = 2.0
+var ROTATION_SPEED = 10.0
 var DAMAGE = 10
 var explode_start_frame = 2
 var explode_end_frame = 4
@@ -26,7 +26,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if global_position.distance_to(landing_location)>5.0:
-		print("Came here")
 		direction = global_position.direction_to(landing_location)
 		velocity = direction * SPEED
 		move_and_slide()

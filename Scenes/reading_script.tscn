@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://dymkjeihxf84l"]
+
+[ext_resource type="Texture2D" uid="uid://bwhogft8mw87i" path="res://Assets/UI/Banners/Carved_3Slides.png" id="1_64nps"]
+[ext_resource type="Script" path="res://Scripts/reading_script.gd" id="1_byv4m"]
+[ext_resource type="Texture2D" uid="uid://dfhnffeg5im10" path="res://Assets/UI/Icons/Regular_01.png" id="2_6xiie"]
+[ext_resource type="Theme" uid="uid://d8yk7wl1m04h" path="res://UI_theme.tres" id="2_bcay3"]
+[ext_resource type="FontFile" uid="uid://fl35qulgwsin" path="res://Assets/Fonts/MotionControl-Bold.otf" id="3_6lhf8"]
+[ext_resource type="Texture2D" uid="uid://jb84pkselgw6" path="res://Assets/UI/Icons/Pressed_01.png" id="5_b35y4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plvly"]
+atlas = ExtResource("1_64nps")
+region = Rect2(0, 0, 192, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7gi43"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plvly")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8lumv"]
+texture = ExtResource("2_6xiie")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2gpyg"]
+texture = ExtResource("5_b35y4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lpfuh"]
+texture = ExtResource("2_6xiie")
+
+[node name="reading_script" type="Node2D"]
+z_index = 6
+script = ExtResource("1_byv4m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_7gi43")
+
+[node name="info_label" type="Label" parent="."]
+offset_left = -128.0
+offset_top = -28.0
+offset_right = 36.0
+offset_bottom = 3.0
+theme_override_colors/font_color = Color(0.968136, 0.0704393, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("3_6lhf8")
+theme_override_font_sizes/font_size = 20
+text = "SPACE TO ATTACK."
+metadata/_edit_use_anchors_ = true
+
+[node name="close_button" type="Button" parent="."]
+z_index = 6
+offset_left = 99.0
+offset_top = -65.0
+offset_right = 171.0
+offset_bottom = 7.0
+theme = ExtResource("2_bcay3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8lumv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2gpyg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lpfuh")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="close_button" to="." method="_on_close_button_pressed"]

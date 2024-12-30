@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://br2ijn5u1puis"]
+[gd_scene load_steps=46 format=3 uid="uid://br2ijn5u1puis"]
 
 [ext_resource type="Texture2D" uid="uid://ppal275oky4v" path="res://Assets/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="1_fchcs"]
 [ext_resource type="Script" path="res://Scripts/protagonist.gd" id="1_k8e0m"]
@@ -304,6 +304,9 @@ size = Vector2(56, 66)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ls0kv"]
 radius = 13.1529
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54k3u"]
+size = Vector2(35, 42)
+
 [node name="Protagonist" type="CharacterBody2D"]
 z_index = 5
 y_sort_enabled = true
@@ -330,7 +333,15 @@ shape = SubResource("CircleShape2D_ls0kv")
 wait_time = 0.3
 one_shot = true
 
+[node name="button_checker_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="button_checker_area"]
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_54k3u")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AnimatedSprite2D/area_collision" to="." method="_on_area_collision_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="button_checker_area" to="." method="_on_button_checker_area_area_entered"]
+[connection signal="area_exited" from="button_checker_area" to="." method="_on_button_checker_area_area_exited"]

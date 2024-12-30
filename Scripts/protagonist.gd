@@ -10,11 +10,13 @@ var flash_color = Color(0.5,0,0)
 var dead=false
 var start_attack_frame = 3
 var end_attack_frame = 5
+var can_interact = false
 
 const SPEED = 120
 const DAMAGE= 50
 #const JUMP_VELOCITY = -400.0
 
+var read_script =""
 
 func _physics_process(delta: float) -> void:
 
@@ -22,6 +24,10 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var x_direction := Input.get_axis("move_left", "move_right")
 	var y_direction := Input.get_axis("move_up", "move_down")
+	
+	if can_interact and Input.is_action_just_pressed("interact"): #found a script
+		get_parent().create_read_script(read_script)
+		print(read_script)
 	
 	if Input.is_action_just_pressed("attack") and !dead:#initiate attack
 		input_enabled= 0
@@ -98,7 +104,6 @@ func _on_area_collision_body_entered(body: Node2D) -> void:
 		body.take_damage(20)
 		print(body.get_health())
 
-
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if animated_sprite.animation == "knight_attack_1" or animated_sprite.animation == "knight_attack_2":
 		if animated_sprite.frame == start_attack_frame:
@@ -106,6 +111,14 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 		elif animated_sprite.frame == end_attack_frame:
 			area_collision.monitoring=false
 
-
 func _on_timer_timeout() -> void:
 	animated_sprite.modulate = Color(1, 1, 1)
+
+func _on_button_checker_area_area_entered(area: Area2D) -> void:
+	if area.name=="pickup_script_area":
+			read_script = area.get_parent().get_count()
+			can_interact = true
+
+func _on_button_checker_area_area_exited(area: Area2D) -> void:
+	if area.name=="pickup_script_area":
+			can_interact = false

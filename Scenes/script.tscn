@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bams2nduvwxns"]
+
+[ext_resource type="Script" path="res://Scripts/pickup_script.gd" id="1_74wbi"]
+[ext_resource type="Texture2D" uid="uid://bgkm0gyvig5rb" path="res://Assets/UI/Banners/Carved_Regular.png" id="1_dagnb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rarkg"]
+atlas = ExtResource("1_dagnb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d73xh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rarkg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1deq"]
+size = Vector2(56, 60)
+
+[node name="script" type="Node2D"]
+z_index = 4
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_74wbi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d73xh")
+
+[node name="pickup_script_area" type="Area2D" parent="."]
+
+[node name="pickup_script_collision" type="CollisionShape2D" parent="pickup_script_area"]
+shape = SubResource("RectangleShape2D_a1deq")
