@@ -299,13 +299,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wnam"]
-size = Vector2(32, 42)
+size = Vector2(28, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_riw15"]
-size = Vector2(50, 16.5)
+size = Vector2(50, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dd6cw"]
-size = Vector2(50, 16)
+size = Vector2(50, 14)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wm507"]
 radius = 11.0
@@ -369,22 +369,23 @@ script = ExtResource("1_w6v3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6xsk3")
-animation = &"pawn_idle"
-autoplay = "pawn_idle"
+animation = &"pawn_attack_1"
+frame = 1
+frame_progress = 0.403686
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]
 monitoring = false
 
 [node name="attack_collision" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
-position = Vector2(38, 0)
+position = Vector2(36, 0)
 shape = SubResource("RectangleShape2D_5wnam")
 
 [node name="attack_collision_1" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
-position = Vector2(-3, 29.75)
+position = Vector2(-3, 28)
 shape = SubResource("RectangleShape2D_riw15")
 
 [node name="attack_collision_2" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
-position = Vector2(-3, -29)
+position = Vector2(-3, -28)
 shape = SubResource("RectangleShape2D_dd6cw")
 
 [node name="body_collision" type="CollisionShape2D" parent="."]
@@ -431,6 +432,7 @@ value = 80.0
 show_percentage = false
 
 [node name="damage_bar_timer" type="Timer" parent="health_bar"]
+one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

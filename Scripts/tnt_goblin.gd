@@ -34,6 +34,7 @@ func get_damage():
 
 func take_damage(damage):
 	HEALTH -= damage
+	health_bar.visible = true
 	update_health_bar(damage)
 	if HEALTH<=0:
 		dead=true
@@ -59,6 +60,7 @@ func _ready() -> void:
 	health_bar.value = HEALTH
 	damage_bar.max_value = HEALTH
 	damage_bar.value = HEALTH
+	health_bar.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
