@@ -1,6 +1,6 @@
 extends Node2D
 
-const REGEN = 40
+const REGEN = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

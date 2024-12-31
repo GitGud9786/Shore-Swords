@@ -3,33 +3,40 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area_collision: Area2D = $AnimatedSprite2D/area_collision
 @onready var timer: Timer = $Timer
+@onready var death_timer: Timer = $death_timer
+@onready var referred_health_bar: PackedScene = preload("res://Scenes/protagonist_health_bar.tscn")
 
 var input_enabled = 1
-var HEALTH = 100
 var flash_color = Color(0.5,0,0)
 var dead=false
 var start_attack_frame = 3
 var end_attack_frame = 5
 var can_interact = false
 
+var HEALTH = 300
 const SPEED = 120
-const DAMAGE= 50
-#const JUMP_VELOCITY = -400.0
+const DAMAGE= 40
 
+var health_bar_offset = Vector2(220,-250)
 var read_script =""
+var health_instance : ProgressBar = null
+
+func _ready() -> void:
+	pass
+	health_instance = referred_health_bar.instantiate()
+	add_child(health_instance)
+	health_instance.global_position = global_position + health_bar_offset
 
 func _physics_process(delta: float) -> void:
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var x_direction := Input.get_axis("move_left", "move_right")
 	var y_direction := Input.get_axis("move_up", "move_down")
 	
-	if can_interact and Input.is_action_just_pressed("interact"): #found a script
+	if can_interact and Input.is_action_just_pressed("interact") and input_enabled: #found a script
 		get_parent().create_read_script(read_script)
 		print(read_script)
 	
-	if Input.is_action_just_pressed("attack") and !dead:#initiate attack
+	if Input.is_action_just_pressed("attack") and !dead and input_enabled:#initiate attack
 		input_enabled= 0
 		#area_collision.monitoring=true
 		var attack_type = randi() % 2 + 1
@@ -64,7 +71,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func regen_health(health):
-	HEALTH += 40
+	HEALTH += health
+	health_instance.update_regen_health(health)
 	print("Health: ", HEALTH)
 
 func get_health():
@@ -78,14 +86,14 @@ func get_death_status():
 
 func take_damage(damage) -> bool:
 	HEALTH -= damage
+	health_instance.update_damaged_health(damage)
 	if HEALTH<=0:
-		input_enabled = false
+		input_enabled = 0
 		dead=true
 		velocity = Vector2.ZERO
 		print("You died")
 		animated_sprite.play("knight_dead")
-		await get_tree().create_timer(1.4).timeout
-		queue_free()
+		death_timer.start()
 		return true
 	else:#only show a hit effect
 		animated_sprite.modulate = flash_color
@@ -101,7 +109,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_area_collision_body_entered(body: Node2D) -> void:
 	if body.get_node("body_collision"):
 		print("Enemy hit successful")
-		body.take_damage(20)
+		body.take_damage(get_damage())
 		print(body.get_health())
 
 func _on_animated_sprite_2d_frame_changed() -> void:
@@ -122,3 +130,7 @@ func _on_button_checker_area_area_entered(area: Area2D) -> void:
 func _on_button_checker_area_area_exited(area: Area2D) -> void:
 	if area.name=="pickup_script_area":
 			can_interact = false
+
+
+func _on_death_timer_timeout() -> void:
+	get_tree().reload_current_scene()

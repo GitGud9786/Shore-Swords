@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cqpb007w10uv0"]
+[gd_scene load_steps=54 format=3 uid="uid://cqpb007w10uv0"]
 
 [ext_resource type="Texture2D" uid="uid://boir4mni7hj1s" path="res://Assets/Factions/Knights/Troops/Pawn/Red/Pawn_Red.png" id="1_e325i"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_w6v3m"]
@@ -299,7 +299,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wnam"]
-size = Vector2(32, 49)
+size = Vector2(32, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_riw15"]
+size = Vector2(50, 16.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd6cw"]
+size = Vector2(50, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wm507"]
 radius = 11.0
@@ -341,6 +347,21 @@ _data = {
 "detection_animation": SubResource("Animation_twjtf")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ak5fk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmddp"]
+bg_color = Color(0.856494, 3.65794e-06, 8.66354e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uoxl0"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hibil"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="enemy" type="CharacterBody2D"]
 z_index = 5
 y_sort_enabled = true
@@ -350,8 +371,6 @@ script = ExtResource("1_w6v3m")
 sprite_frames = SubResource("SpriteFrames_6xsk3")
 animation = &"pawn_idle"
 autoplay = "pawn_idle"
-frame = 3
-frame_progress = 0.222841
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]
 monitoring = false
@@ -360,9 +379,17 @@ monitoring = false
 position = Vector2(38, 0)
 shape = SubResource("RectangleShape2D_5wnam")
 
+[node name="attack_collision_1" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
+position = Vector2(-3, 29.75)
+shape = SubResource("RectangleShape2D_riw15")
+
+[node name="attack_collision_2" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
+position = Vector2(-3, -29)
+shape = SubResource("RectangleShape2D_dd6cw")
+
 [node name="body_collision" type="CollisionShape2D" parent="."]
 z_index = 5
-position = Vector2(0, 7)
+position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_wm507")
 
 [node name="Timer" type="Timer" parent="."]
@@ -377,10 +404,36 @@ autoplay = "detection_animation"
 
 [node name="detector_ray" type="RayCast2D" parent="."]
 position = Vector2(-7.62939e-06, 7.62939e-06)
-enabled = false
 target_position = Vector2(221, -7.62939e-06)
+
+[node name="health_bar" type="ProgressBar" parent="."]
+z_index = 1
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 40.0
+offset_bottom = -30.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_ak5fk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qmddp")
+value = 100.0
+show_percentage = false
+
+[node name="damage_bar" type="ProgressBar" parent="health_bar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_uoxl0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hibil")
+value = 80.0
+show_percentage = false
+
+[node name="damage_bar_timer" type="Timer" parent="health_bar"]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AnimatedSprite2D/attack_area_collision" to="." method="_on_attack_area_collision_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="health_bar/damage_bar_timer" to="." method="_on_damage_bar_timer_timeout"]

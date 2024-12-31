@@ -9,6 +9,9 @@ extends Node2D
 @onready var pickup_script_15: Node2D = $"Pickup Script/pickup_script_15"
 @onready var pickup_script_16: Node2D = $"Pickup Script/pickup_script_16"
 
+@onready var health_bar: ProgressBar = $Protagonist/health_bar
+
+
 var script_instance : Node2D = null
 
 const str_11 = "SPACE to attack"

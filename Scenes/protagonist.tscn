@@ -339,9 +339,13 @@ one_shot = true
 position = Vector2(0.5, 5)
 shape = SubResource("RectangleShape2D_54k3u")
 
+[node name="death_timer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AnimatedSprite2D/area_collision" to="." method="_on_area_collision_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="button_checker_area" to="." method="_on_button_checker_area_area_entered"]
 [connection signal="area_exited" from="button_checker_area" to="." method="_on_button_checker_area_area_exited"]
+[connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]

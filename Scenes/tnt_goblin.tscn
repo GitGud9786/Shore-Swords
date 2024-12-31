@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ewsxnk6xn3p5"]
+[gd_scene load_steps=46 format=3 uid="uid://ewsxnk6xn3p5"]
 
 [ext_resource type="Script" path="res://Scripts/tnt_goblin.gd" id="1_enndp"]
 [ext_resource type="Texture2D" uid="uid://br1btbjlgir1d" path="res://Assets/Factions/Goblins/Troops/TNT/Red/TNT_Red.png" id="1_g23hr"]
@@ -298,6 +298,21 @@ _data = {
 "detection_animation": SubResource("Animation_sgb02")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vltx0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4b5y"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kf8y3"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7q0md"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="tnt_goblin" type="CharacterBody2D"]
 z_index = 5
 y_sort_enabled = true
@@ -324,6 +339,30 @@ autoplay = "detection_animation"
 
 [node name="detector_ray" type="RayCast2D" parent="."]
 target_position = Vector2(273, 0)
+
+[node name="health_bar" type="ProgressBar" parent="."]
+z_index = 1
+offset_left = -41.0
+offset_top = -36.0
+offset_right = 39.0
+offset_bottom = -34.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_vltx0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i4b5y")
+show_percentage = false
+
+[node name="damage_bar" type="ProgressBar" parent="health_bar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_kf8y3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7q0md")
+show_percentage = false
+
+[node name="damage_bar_timer" type="Timer" parent="health_bar"]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

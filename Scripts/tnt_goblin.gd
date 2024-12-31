@@ -6,6 +6,11 @@ extends CharacterBody2D
 @onready var detector_animation: AnimationPlayer = $detector_animation
 @onready var tnt: PackedScene = preload("res://Scenes/tnt.tscn")
 
+@onready var health_bar: ProgressBar = $health_bar
+@onready var damage_bar: ProgressBar = $health_bar/damage_bar
+@onready var damage_bar_timer: Timer = $health_bar/damage_bar_timer
+
+
 const SPEED = 80.0
 
 var HEALTH = 100
@@ -29,6 +34,7 @@ func get_damage():
 
 func take_damage(damage):
 	HEALTH -= damage
+	update_health_bar(damage)
 	if HEALTH<=0:
 		dead=true
 		attack_mode=false
@@ -41,9 +47,18 @@ func take_damage(damage):
 		animated_sprite.modulate = flash_color
 		timer.start()
 
+func update_health_bar(damage):
+	health_bar.value -= damage
+	if health_bar.value<=0:
+		health_bar.queue_free()
+	damage_bar_timer.start()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	health_bar.max_value = HEALTH
+	health_bar.value = HEALTH
+	damage_bar.max_value = HEALTH
+	damage_bar.value = HEALTH
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
