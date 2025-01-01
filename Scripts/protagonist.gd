@@ -34,7 +34,6 @@ func _physics_process(delta: float) -> void:
 	
 	if can_interact and Input.is_action_just_pressed("interact") and input_enabled: #found a script
 		get_parent().create_read_script(read_script)
-		print(read_script)
 	
 	if Input.is_action_just_pressed("attack") and !dead and input_enabled:#initiate attack
 		input_enabled= 0
@@ -73,7 +72,6 @@ func _physics_process(delta: float) -> void:
 func regen_health(health):
 	HEALTH += health
 	health_instance.update_regen_health(health)
-	print("Health: ", HEALTH)
 
 func get_health():
 	return HEALTH
@@ -91,7 +89,6 @@ func take_damage(damage) -> bool:
 		input_enabled = 0
 		dead=true
 		velocity = Vector2.ZERO
-		print("You died")
 		animated_sprite.play("knight_dead")
 		death_timer.start()
 		return true
@@ -108,9 +105,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_area_collision_body_entered(body: Node2D) -> void:
 	if body.get_node("body_collision"):
-		print("Enemy hit successful")
 		body.take_damage(get_damage())
-		print(body.get_health())
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if animated_sprite.animation == "knight_attack_1" or animated_sprite.animation == "knight_attack_2":

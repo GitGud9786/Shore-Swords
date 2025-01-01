@@ -55,6 +55,7 @@ sprite_frames = SubResource("SpriteFrames_guw1q")
 animation = &"gold_relic"
 
 [node name="relic_area_collision" type="Area2D" parent="."]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="relic_area_collision"]
 shape = SubResource("RectangleShape2D_7rw82")

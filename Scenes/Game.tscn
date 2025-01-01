@@ -533,7 +533,12 @@ position = Vector2(726, -1013)
 position = Vector2(-1517, -1490)
 
 [node name="pickup_script_16" parent="Pickup Script" instance=ExtResource("14_oyi4h")]
-position = Vector2(-1501, -785)
+position = Vector2(-1501, -764)
+
+[node name="pickup_script_17" parent="Pickup Script" instance=ExtResource("14_oyi4h")]
+position = Vector2(-1321, -796)
 
 [node name="relic" parent="." instance=ExtResource("14_su3y2")]
-position = Vector2(-1477, -691)
+position = Vector2(-1442, -705)
+
+[connection signal="child_exiting_tree" from="Enemy" to="." method="_on_enemy_child_exiting_tree"]

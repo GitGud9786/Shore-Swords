@@ -25,7 +25,6 @@ var dead= false
 var start_attack_frame = 3
 var end_attack_frame = 5
 
-signal killed
 
 func get_health():
 	return HEALTH
@@ -45,12 +44,10 @@ func take_damage(damage):
 	health_bar.visible = true
 	update_health_bar(damage)
 	if HEALTH<=0:
-		emit_signal("killed",self)
 		body_collision.disabled = true
 		dead=true
 		attack_mode=false
 		velocity = Vector2.ZERO
-		print("Pawn killed")
 		animated_sprite.play("pawn_dead")
 		await get_tree().create_timer(1.4).timeout
 		queue_free()
@@ -80,7 +77,6 @@ func _process(delta: float) -> void:
 	
 	if velocity != Vector2.ZERO and attack_mode==false and dead==false:
 		animated_sprite.play("pawn_running")
-		#print("Running animation playing")
 		animated_sprite.flip_h = velocity.x < 0
 		attack_area_collision.scale = -abs(attack_area_collision.scale) if velocity.x < 0 else abs(attack_area_collision.scale)
 		
@@ -128,7 +124,6 @@ func attack_protagonist() -> void:
 	attack_mode=true
 	velocity = Vector2.ZERO
 	animated_sprite.play("pawn_attack_1")
-	#print("Enemy attacking")
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -144,7 +139,6 @@ func _on_attack_area_collision_body_entered(body: Node2D) -> void:
 			detector_ray.enabled=false
 			attack_mode=false
 			animated_sprite.play("pawn_idle")
-		print("You are under attack, HP LEFT: ",body.get_health())
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:
