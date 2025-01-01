@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgtcs43e1maxf"]
+
+[ext_resource type="Script" path="res://Scripts/relic.gd" id="1_6hj5a"]
+[ext_resource type="Texture2D" uid="uid://bl2vw2ug22e7o" path="res://Assets/Resources/RPGIcons.png" id="1_di48u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pnos"]
+atlas = ExtResource("1_di48u")
+region = Rect2(960, 1280, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2hej"]
+atlas = ExtResource("1_di48u")
+region = Rect2(640, 1280, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jshrv"]
+atlas = ExtResource("1_di48u")
+region = Rect2(800, 1280, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_guw1q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pnos")
+}],
+"loop": false,
+"name": &"bronze_relic",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2hej")
+}],
+"loop": true,
+"name": &"gold_relic",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jshrv")
+}],
+"loop": true,
+"name": &"silver_relic",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rw82"]
+size = Vector2(144, 160)
+
+[node name="relic" type="Node2D"]
+z_index = 5
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_6hj5a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_guw1q")
+animation = &"gold_relic"
+
+[node name="relic_area_collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="relic_area_collision"]
+shape = SubResource("RectangleShape2D_7rw82")
+
+[connection signal="body_entered" from="relic_area_collision" to="." method="_on_relic_area_collision_body_entered"]

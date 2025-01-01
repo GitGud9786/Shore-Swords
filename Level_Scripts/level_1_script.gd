@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var reading_script: PackedScene = preload("res://Scenes/reading_script.tscn")
+@onready var enemy: PackedScene = preload("res://Scenes/enemy.tscn")
 @onready var pickup_script_11: Node2D = $"Pickup Script/pickup_script_11"
 @onready var pickup_script_12: Node2D = $"Pickup Script/pickup_script_12"
 @onready var pickup_script_13: Node2D = $"Pickup Script/pickup_script_13"
@@ -8,11 +9,14 @@ extends Node2D
 @onready var protagonist: CharacterBody2D = $Protagonist
 @onready var pickup_script_15: Node2D = $"Pickup Script/pickup_script_15"
 @onready var pickup_script_16: Node2D = $"Pickup Script/pickup_script_16"
+@onready var relic: Node2D = $relic
 
 @onready var health_bar: ProgressBar = $Protagonist/health_bar
 
-
+var foe_positions = []
+var spawn = true
 var script_instance : Node2D = null
+var kills = 0
 
 const str_11 = "SPACE to attack"
 const str_12 = "Pawns are melee attackers"
@@ -38,9 +42,22 @@ func _ready() -> void:
 	pickup_script_15.set_count("15") #The relic respawns enemies
 	pickup_script_16.set_count("16") #Head back to the start
 	
+	var enemy_node = get_node("Enemy")
+	for child in enemy_node.get_children():
+		foe_positions.append(child.global_position)
+		child.connect("killed", self, kill_counter() )
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if relic==null and spawn:
+		spawn = false
+		for pos in foe_positions:
+			var new_enemy = enemy.instantiate()
+			new_enemy.global_position = pos 
+			add_child(new_enemy)
+			await get_tree().create_timer(0.1).timeout
+			new_enemy.update_stats()
+			print("Enemy added")
 	
 func create_read_script(read_script):
 	if script_instance == null:
@@ -48,3 +65,6 @@ func create_read_script(read_script):
 		protagonist.add_child(script_instance)
 		script_instance.global_position = protagonist.global_position
 		script_instance.update_label(script_map[read_script])
+		
+func kill_counter():
+	kills += 1

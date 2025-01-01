@@ -9,11 +9,12 @@ extends CharacterBody2D
 @onready var health_bar: ProgressBar = $health_bar
 @onready var damage_bar: ProgressBar = $health_bar/damage_bar
 @onready var damage_bar_timer: Timer = $health_bar/damage_bar_timer
+@onready var body_collision: CollisionShape2D = $body_collision
 
 
 var HEALTH = 100
-var DAMAGE = 20
-const SPEED = 90.0
+var DAMAGE = 25
+var SPEED = 90.0
 
 var attack_mode = false
 var lock_on=false
@@ -24,17 +25,28 @@ var dead= false
 var start_attack_frame = 3
 var end_attack_frame = 5
 
+signal killed
+
 func get_health():
 	return HEALTH
 	
 func get_damage():
 	return DAMAGE
 	
+func update_stats():
+	DAMAGE *= 2
+	SPEED *= 1.5
+	animated_sprite.speed_scale = 1.5
+	
 func take_damage(damage):
+	if body_collision.disabled:
+		return
 	HEALTH -= damage
 	health_bar.visible = true
 	update_health_bar(damage)
 	if HEALTH<=0:
+		emit_signal("killed",self)
+		body_collision.disabled = true
 		dead=true
 		attack_mode=false
 		velocity = Vector2.ZERO
@@ -127,7 +139,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_attack_area_collision_body_entered(body: Node2D) -> void:
 	if body.get_node("protagonist_body_collision"):
-		if(body.take_damage(20)): #the player has died
+		if(body.take_damage(DAMAGE)): #the player has died
 			protagonist_last_loc = global_position
 			detector_ray.enabled=false
 			attack_mode=false
