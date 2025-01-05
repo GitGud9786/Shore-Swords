@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var timer: Timer = $Timer
 @onready var death_timer: Timer = $death_timer
 @onready var referred_health_bar: PackedScene = preload("res://Scenes/protagonist_health_bar.tscn")
+@onready var protagonist_body_collision: CollisionShape2D = $protagonist_body_collision
 
 var input_enabled = 1
 var flash_color = Color(0.5,0,0)
@@ -14,12 +15,18 @@ var end_attack_frame = 5
 var can_interact = false
 
 var HEALTH = 300
-const SPEED = 120
-const DAMAGE= 40
+const SPEED = 120 * 2
+const DAMAGE= 40 * 10
 
 var health_bar_offset = Vector2(220,-250)
 var read_script =""
 var health_instance : ProgressBar = null
+
+func input_disable():
+	input_enabled = 0
+	velocity = Vector2.ZERO
+	animated_sprite.play("knight_idle")
+	protagonist_body_collision.disabled = true
 
 func _ready() -> void:
 	pass

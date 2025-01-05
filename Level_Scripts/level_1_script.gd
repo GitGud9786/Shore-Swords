@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var reading_script: PackedScene = preload("res://Scenes/reading_script.tscn")
+@onready var transitioner: PackedScene = preload("res://Scenes/transition_screen.tscn")
 @onready var enemy: PackedScene = preload("res://Scenes/enemy.tscn")
 @onready var pickup_script_11: Node2D = $"Pickup Script/pickup_script_11"
 @onready var pickup_script_12: Node2D = $"Pickup Script/pickup_script_12"
@@ -17,6 +18,7 @@ extends Node2D
 var foe_positions = []
 var spawn = true
 var script_instance : Node2D = null
+var transition_instance : CanvasLayer = null
 var enemies = 0
 
 const str_11 = "SPACE to attack"
@@ -77,6 +79,16 @@ func create_read_script(read_script):
 func kill_counter():
 	enemies -= 1
 
-
 func _on_enemy_child_exiting_tree(node: Node) -> void:
 	kill_counter()
+
+
+func _on_level_pass_area_body_entered(body: Node2D) -> void:
+	if relic == null: #relic is collected
+		if body.get_node("protagonist_body_collision"):
+			body.input_disable()
+			transition_instance = transitioner.instantiate()
+			add_child(transition_instance)
+			await get_tree().create_timer(0.1).timeout
+			transition_instance.transition()
+			

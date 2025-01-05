@@ -34,8 +34,8 @@ func get_damage():
 	
 func update_stats():
 	DAMAGE *= 2
-	SPEED *= 1.5
-	animated_sprite.speed_scale = 1.5
+	SPEED *= 1.25
+	animated_sprite.speed_scale = 1.25
 	
 func take_damage(damage):
 	if body_collision.disabled:
