@@ -15,8 +15,8 @@ var end_attack_frame = 5
 var can_interact = false
 
 var HEALTH = 300
-const SPEED = 120 * 2
-const DAMAGE= 40 * 10
+const SPEED = 120
+const DAMAGE= 40
 
 var health_bar_offset = Vector2(220,-250)
 var read_script =""

@@ -497,4 +497,7 @@ position = Vector2(420, 3)
 [node name="tree_trunk3" parent="." instance=ExtResource("15_mgvtu")]
 position = Vector2(161, 70)
 
+[connection signal="button_up" from="VBoxContainer/start_button" to="." method="_on_start_button_button_up"]
+[connection signal="pressed" from="VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="button_up" from="VBoxContainer/quit_button" to="." method="_on_quit_button_button_up"]
 [connection signal="pressed" from="VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
