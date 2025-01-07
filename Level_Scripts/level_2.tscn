@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dytvglkx8cxrv"]
+
+[ext_resource type="PackedScene" uid="uid://br2ijn5u1puis" path="res://Scenes/protagonist.tscn" id="1_xcaou"]
+[ext_resource type="PackedScene" uid="uid://b7yh8l2maf6dq" path="res://Scenes/fire_goblin.tscn" id="2_gv8vh"]
+[ext_resource type="PackedScene" uid="uid://cqpb007w10uv0" path="res://Scenes/enemy.tscn" id="3_3pkv3"]
+
+[node name="Level_2" type="Node2D"]
+
+[node name="Protagonist" parent="." instance=ExtResource("1_xcaou")]
+position = Vector2(-367, -22)
+
+[node name="fire_goblin" parent="." instance=ExtResource("2_gv8vh")]
+position = Vector2(112, -30)
+
+[node name="enemy" parent="." instance=ExtResource("3_3pkv3")]
+position = Vector2(-106, -213)
+
+[node name="Camera2D" type="Camera2D" parent="."]
