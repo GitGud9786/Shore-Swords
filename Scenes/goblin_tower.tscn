@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://conglsklwy6xm"]
+
+[ext_resource type="Texture2D" uid="uid://bjk1a76h6dl4" path="res://Assets/Factions/Knights/Buildings/Tower/Tower_Red.png" id="1_v72xg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn3k7"]
+atlas = ExtResource("1_v72xg")
+region = Rect2(0, 0, 128, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c4x8h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yn3k7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5gum"]
+size = Vector2(84, 56)
+
+[node name="Goblin tower" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_c4x8h")
+offset = Vector2(0, -50)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_y5gum")

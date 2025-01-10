@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmbthg8sifpak"]
+
+[ext_resource type="Texture2D" uid="uid://d374radqr6jvq" path="res://Assets/Factions/Goblins/Buildings/Wood_House/Goblin_House.png" id="1_euan2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toiid"]
+atlas = ExtResource("1_euan2")
+region = Rect2(0, 0, 128, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_582ax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toiid")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xljao"]
+radius = 43.0116
+
+[node name="goblin house" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_582ax")
+offset = Vector2(0, -29.155)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -6)
+shape = SubResource("CircleShape2D_xljao")

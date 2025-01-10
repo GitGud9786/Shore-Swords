@@ -6,7 +6,7 @@ extends CharacterBody2D
 var landing_location = Vector2.ZERO
 var SPEED = 250
 var ROTATION_SPEED = 10.0
-var DAMAGE = 10
+var DAMAGE = 100
 var explode_start_frame = 2
 var explode_end_frame = 4
 var explosion_end = false

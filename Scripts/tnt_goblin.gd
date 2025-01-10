@@ -13,7 +13,7 @@ extends CharacterBody2D
 
 const SPEED = 80.0
 
-var HEALTH = 100
+var HEALTH = 110
 var DAMAGE = 40
 var dead = false
 var attack_mode = false
@@ -60,7 +60,7 @@ func _ready() -> void:
 	health_bar.value = HEALTH
 	damage_bar.max_value = HEALTH
 	damage_bar.value = HEALTH
-	health_bar.visible = true
+	health_bar.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

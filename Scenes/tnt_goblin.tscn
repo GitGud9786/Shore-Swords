@@ -259,7 +259,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4j0f8"]
-radius = 18.0278
+radius = 13.0
 
 [sub_resource type="Animation" id="Animation_r2xiy"]
 length = 0.001
@@ -325,7 +325,7 @@ animation = &"tnt_idle"
 autoplay = "tnt_idle"
 
 [node name="body_collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_4j0f8")
 
 [node name="Timer" type="Timer" parent="."]

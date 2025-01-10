@@ -14,7 +14,7 @@ extends CharacterBody2D
 
 var HEALTH = 100
 var DAMAGE = 40
-var SPEED = 110.0
+var SPEED = 130.0
 
 var attack_mode = false
 var lock_on=false

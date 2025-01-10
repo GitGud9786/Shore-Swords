@@ -159,7 +159,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"firegoblin_attack",
-"speed": 15.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -262,13 +262,28 @@ animations = [{
 size = Vector2(49, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4810e"]
-size = Vector2(40.5, 17)
+size = Vector2(41.5, 12.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nupns"]
-size = Vector2(41, 17)
+size = Vector2(41, 13)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bvfu0"]
 radius = 12.0416
+
+[sub_resource type="Animation" id="Animation_4ihnr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("detector_ray:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_r7coj"]
 resource_name = "detection_animation"
@@ -284,21 +299,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_4ihnr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("detector_ray:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_66rt8"]
@@ -323,6 +323,8 @@ expand_margin_bottom = 1.0
 bg_color = Color(1, 1, 1, 1)
 
 [node name="fire_goblin" type="CharacterBody2D"]
+z_index = 5
+y_sort_enabled = true
 script = ExtResource("1_t501u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -338,11 +340,11 @@ position = Vector2(45.5, -0.5)
 shape = SubResource("RectangleShape2D_krnq0")
 
 [node name="attack_collision_1" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
-position = Vector2(0.25, -41.5)
+position = Vector2(0.25, -39.25)
 shape = SubResource("RectangleShape2D_4810e")
 
 [node name="attack_collision_2" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
-position = Vector2(0.5, 40.5)
+position = Vector2(0.5, 38.5)
 shape = SubResource("RectangleShape2D_nupns")
 
 [node name="body_collision" type="CollisionShape2D" parent="."]
@@ -362,6 +364,7 @@ autoplay = "detection_animation"
 target_position = Vector2(254, 0)
 
 [node name="health_bar" type="ProgressBar" parent="."]
+visible = false
 z_index = 6
 offset_left = -41.0
 offset_top = -48.0
