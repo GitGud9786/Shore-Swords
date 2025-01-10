@@ -142,6 +142,24 @@ position = Vector2(800, -1957)
 [node name="Tree35" parent="Trees" instance=ExtResource("4_xnju7")]
 position = Vector2(716, -1974)
 
+[node name="Tree37" parent="Trees" instance=ExtResource("4_xnju7")]
+position = Vector2(629, -1642)
+
+[node name="Tree41" parent="Trees" instance=ExtResource("4_xnju7")]
+position = Vector2(621, -1688)
+
+[node name="Tree42" parent="Trees" instance=ExtResource("4_xnju7")]
+position = Vector2(584, -1626)
+
+[node name="Tree38" parent="Trees" instance=ExtResource("4_xnju7")]
+position = Vector2(673, -1608)
+
+[node name="Tree39" parent="Trees" instance=ExtResource("4_xnju7")]
+position = Vector2(742, -1648)
+
+[node name="Tree40" parent="Trees" instance=ExtResource("4_xnju7")]
+position = Vector2(684, -1686)
+
 [node name="Tree26" parent="Trees" instance=ExtResource("4_xnju7")]
 position = Vector2(16, -1590)
 
@@ -304,6 +322,36 @@ position = Vector2(1094, -1584)
 [node name="small_stone7" parent="Stones" instance=ExtResource("10_guqom")]
 position = Vector2(1126, -1531)
 
+[node name="small_stone15" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(667, -1604)
+
+[node name="small_stone18" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(703, -1624)
+
+[node name="small_stone19" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(738, -1634)
+
+[node name="small_stone20" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(721, -1616)
+
+[node name="small_stone21" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(650, -1615)
+
+[node name="small_stone25" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(761, -1651)
+
+[node name="small_stone26" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(710, -1672)
+
+[node name="small_stone22" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(603, -1628)
+
+[node name="small_stone23" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(638, -1638)
+
+[node name="small_stone24" parent="Stones" instance=ExtResource("10_guqom")]
+position = Vector2(621, -1620)
+
 [node name="Death Sign" parent="." instance=ExtResource("11_ul45l")]
 position = Vector2(1102, -438)
 
@@ -461,6 +509,9 @@ position = Vector2(871, -1892)
 
 [node name="meat6" parent="Food" instance=ExtResource("16_dkm82")]
 position = Vector2(-149, -1794)
+
+[node name="meat8" parent="Food" instance=ExtResource("16_dkm82")]
+position = Vector2(293, -1645)
 
 [node name="meat4" parent="Food" instance=ExtResource("16_dkm82")]
 position = Vector2(1616, -1489)
