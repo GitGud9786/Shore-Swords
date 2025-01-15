@@ -47,7 +47,7 @@ func _ready() -> void:
 	pickup_script_15.set_count("15") #The relic respawns enemies
 	pickup_script_16.set_count("16") #Head back to the start
 	pickup_script_17.set_count("17")
-	
+	relic.choose_bronze_type()
 	var enemy_node = get_node("Enemy")
 	for child in enemy_node.get_children():
 		enemies +=1

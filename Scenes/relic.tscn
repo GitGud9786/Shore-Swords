@@ -52,7 +52,7 @@ script = ExtResource("1_6hj5a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_guw1q")
-animation = &"gold_relic"
+animation = &"bronze_relic"
 
 [node name="relic_area_collision" type="Area2D" parent="."]
 monitoring = false
