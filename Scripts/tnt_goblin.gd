@@ -24,11 +24,15 @@ var protagonist_last_loc = Vector2.ZERO
 var last_location_direction = Vector2.ZERO
 var throw_frame = 2
 var can_attack = true
+var shrapnel_effect = false
 
 var tnt_instance : Node2D = null
 
 func get_health():
 	return HEALTH
+
+func update_stats():
+	shrapnel_effect=true
 	
 func get_damage():
 	return DAMAGE
@@ -132,6 +136,8 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 			tnt_instance = tnt.instantiate()
 			tnt_instance.global_position = global_position
 			get_parent().add_child(tnt_instance)
+			if shrapnel_effect:
+				tnt_instance.update_stats()
 			tnt_instance.set_landing_location(protagonist_last_loc)
 
 

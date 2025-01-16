@@ -11,6 +11,10 @@ var explode_start_frame = 2
 var explode_end_frame = 4
 var explosion_end = false
 var direction = Vector2.ZERO
+var shrapnel_effect = false
+
+func update_stats():
+	shrapnel_effect = true
 
 func get_explode_status():
 	return explosion_end
@@ -43,6 +47,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func _on_attack_area_collision_body_entered(body: Node2D) -> void:
+	if shrapnel_effect and body.get_node("protagonist_body_collision"):
+		body.enable_shrapnel()
 	if body.has_method("take_damage"): #detect both players and enemies
 		body.take_damage(DAMAGE)
 

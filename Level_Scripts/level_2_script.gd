@@ -52,14 +52,14 @@ func _process(delta: float) -> void:
 			new_enemy.global_position = pos 
 			add_child(new_enemy)
 			await get_tree().create_timer(0.1).timeout
-			#new_enemy.update_stats()
+			new_enemy.update_stats()
 			print("Fire added")
 		for pos in tnt_goblin_positions:
 			var new_enemy = tnt_goblin.instantiate()
 			new_enemy.global_position = pos 
 			add_child(new_enemy)
 			await get_tree().create_timer(0.1).timeout
-			#new_enemy.update_stats()
+			new_enemy.update_stats()
 			print("TNT added")
 	
 func create_read_script(read_script):

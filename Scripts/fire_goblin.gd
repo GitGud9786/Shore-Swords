@@ -24,18 +24,13 @@ var last_location_direction = Vector2.ZERO
 var dead= false
 var start_attack_frame = 3
 var end_attack_frame = 5
-
+var burn_effect = false
 
 func get_health():
 	return HEALTH
 	
 func get_damage():
 	return DAMAGE
-	
-func update_stats():
-	DAMAGE *= 2
-	SPEED *= 1.25
-	animated_sprite.speed_scale = 1.25
 	
 func take_damage(damage):
 	if body_collision.disabled:
@@ -62,6 +57,8 @@ func update_health_bar(damage):
 	damage_bar_timer.start()
 	
 
+func update_stats():
+	burn_effect=true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -135,7 +132,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_attack_area_collision_body_entered(body: Node2D) -> void:
 	if body.get_node("protagonist_body_collision"):
-		body.enable_burn()
+		if burn_effect:
+			body.enable_burn()
 		if(body.take_damage(DAMAGE)): #the player has died
 			protagonist_last_loc = global_position
 			detector_ray.enabled=false
