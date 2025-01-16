@@ -20,5 +20,5 @@ func choose_bronze_type():
 func choose_silver_type():
 	animated_sprite.animation = "silver_relic"
 	
-func choose_bronze_type():
+func choose_gold_type():
 	animated_sprite.animation = "gold_relic"

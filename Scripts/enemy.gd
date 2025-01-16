@@ -83,7 +83,7 @@ func _process(delta: float) -> void:
 	elif dead==false and attack_mode==false:
 		animated_sprite.play("pawn_idle")
 	
-	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision") and dead==false and attack_mode==false:
+	if dead==false and detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision") and attack_mode==false:
 		protagonist_last_loc = detector_ray.get_collision_point()
 		lock_on_protagonist(detector_ray.get_collider())
 		animated_sprite.flip_h = detector_ray.get_collision_point().x < detector_ray.global_position.x

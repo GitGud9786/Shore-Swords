@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var death_timer: Timer = $death_timer
 @onready var referred_health_bar: PackedScene = preload("res://Scenes/protagonist_health_bar.tscn")
 @onready var protagonist_body_collision: CollisionShape2D = $protagonist_body_collision
+@onready var incendiery_timer: Timer = $incendiery_timer
+@onready var shrapnel_timer: Timer = $shrapnel_timer
 
 var input_enabled = 1
 var flash_color = Color(0.5,0,0)
@@ -14,9 +16,12 @@ var start_attack_frame = 3
 var end_attack_frame = 5
 var can_interact = false
 
-var HEALTH = 300
+var burning_effect = false
+var shrapnel_effect = false
+
+var HEALTH = 300.00
 const SPEED = 120.0
-const DAMAGE= 40
+const DAMAGE= 40.0
 
 var health_bar_offset = Vector2(220,-250)
 var read_script =""
@@ -28,6 +33,14 @@ func input_disable():
 	animated_sprite.play("knight_idle")
 	protagonist_body_collision.disabled = true
 
+func enable_burn():
+	burning_effect = true
+	incendiery_timer.start()
+	
+func enable_shrapnel():
+	shrapnel_effect = true
+	shrapnel_timer.start()
+	
 func _ready() -> void:
 	pass
 	health_instance = referred_health_bar.instantiate()
@@ -35,6 +48,11 @@ func _ready() -> void:
 	health_instance.global_position = global_position + health_bar_offset
 
 func _physics_process(delta: float) -> void:
+
+	if burning_effect:
+		take_damage(0.2)
+	if shrapnel_effect:
+		take_damage(0.05)
 
 	var x_direction := Input.get_axis("move_left", "move_right")
 	var y_direction := Input.get_axis("move_up", "move_down")
@@ -136,3 +154,11 @@ func _on_button_checker_area_area_exited(area: Area2D) -> void:
 
 func _on_death_timer_timeout() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_incendiery_timer_timeout() -> void:
+	burning_effect=false
+
+
+func _on_shrapnel_timer_timeout() -> void:
+	shrapnel_effect=false

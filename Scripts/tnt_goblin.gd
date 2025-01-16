@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var health_bar: ProgressBar = $health_bar
 @onready var damage_bar: ProgressBar = $health_bar/damage_bar
 @onready var damage_bar_timer: Timer = $health_bar/damage_bar_timer
+@onready var body_collision: CollisionShape2D = $body_collision
 
 
 const SPEED = 80.0
@@ -33,14 +34,16 @@ func get_damage():
 	return DAMAGE
 
 func take_damage(damage):
+	if body_collision.disabled:
+		return
 	HEALTH -= damage
 	health_bar.visible = true
 	update_health_bar(damage)
 	if HEALTH<=0:
+		body_collision.disabled = true
 		dead=true
 		attack_mode=false
 		velocity = Vector2.ZERO
-		print("Pawn killed")
 		animated_sprite.play("tnt_dead")
 		await get_tree().create_timer(1.4).timeout
 		queue_free()
@@ -71,7 +74,7 @@ func _process(delta: float) -> void:
 	elif dead==false and attack_mode==false:
 		animated_sprite.play("tnt_idle")
 		
-	if detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision") and dead==false and attack_mode==false:
+	if dead==false and detector_ray.is_colliding() and detector_ray.get_collider().get_node("protagonist_body_collision") and attack_mode==false:
 		protagonist_last_loc = detector_ray.get_collision_point()
 		lock_on_protagonist(detector_ray.get_collider())
 		animated_sprite.flip_h = detector_ray.get_collision_point().x < detector_ray.global_position.x
