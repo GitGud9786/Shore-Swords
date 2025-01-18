@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfhriiwifqo3t"]
+
+[ext_resource type="PackedScene" uid="uid://br2ijn5u1puis" path="res://Scenes/protagonist.tscn" id="1_h8hhp"]
+[ext_resource type="PackedScene" uid="uid://c7t4emwn2bhsm" path="res://Scenes/archer.tscn" id="2_hf5jl"]
+[ext_resource type="PackedScene" uid="uid://ewsxnk6xn3p5" path="res://Scenes/tnt_goblin.tscn" id="3_brpsj"]
+
+[node name="Level_3" type="Node2D"]
+
+[node name="Protagonist" parent="." instance=ExtResource("1_h8hhp")]
+position = Vector2(-7, -5)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-7, -5)
+
+[node name="archer" parent="." instance=ExtResource("2_hf5jl")]
+position = Vector2(331, 178)
+
+[node name="tnt_goblin" parent="." instance=ExtResource("3_brpsj")]
+position = Vector2(-252, -242)

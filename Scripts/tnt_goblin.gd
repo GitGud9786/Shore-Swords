@@ -143,3 +143,7 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 
 func _on_timer_timeout() -> void:
 	animated_sprite.modulate = Color(1, 1, 1)
+
+
+func _on_damage_bar_timer_timeout() -> void:
+	damage_bar.value = health_bar.value

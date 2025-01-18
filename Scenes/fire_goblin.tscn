@@ -364,7 +364,6 @@ autoplay = "detection_animation"
 target_position = Vector2(254, 0)
 
 [node name="health_bar" type="ProgressBar" parent="."]
-visible = false
 z_index = 6
 offset_left = -41.0
 offset_top = -48.0

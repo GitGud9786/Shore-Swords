@@ -29,6 +29,7 @@ func _ready() -> void:
 	pickup_script_11.set_count("11") #SPACE to attack
 	pickup_script_12.set_count("12") #Pawns are melee attackers
 	pickup_script_13.set_count("13") #Meat restores health
+	relic.choose_silver_type()
 
 	var fire_goblin_node = get_node("Fire Goblins")
 	for child in fire_goblin_node.get_children():
@@ -53,14 +54,12 @@ func _process(delta: float) -> void:
 			add_child(new_enemy)
 			await get_tree().create_timer(0.1).timeout
 			new_enemy.update_stats()
-			print("Fire added")
 		for pos in tnt_goblin_positions:
 			var new_enemy = tnt_goblin.instantiate()
 			new_enemy.global_position = pos 
 			add_child(new_enemy)
 			await get_tree().create_timer(0.1).timeout
 			new_enemy.update_stats()
-			print("TNT added")
 	
 func create_read_script(read_script):
 	if script_instance == null:

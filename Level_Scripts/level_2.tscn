@@ -705,10 +705,7 @@ position = Vector2(1171, -342)
 position = Vector2(612, -1198)
 
 [node name="fire_goblin4" parent="Fire Goblins" instance=ExtResource("15_msu8f")]
-position = Vector2(157, -1740)
-
-[node name="fire_goblin5" parent="Fire Goblins" instance=ExtResource("15_msu8f")]
-position = Vector2(216, -1424)
+position = Vector2(224, -1656)
 
 [node name="fire_goblin9" parent="Fire Goblins" instance=ExtResource("15_msu8f")]
 position = Vector2(-732, -1745)
@@ -726,7 +723,7 @@ position = Vector2(-1425, -2052)
 position = Vector2(-1087, -2217)
 
 [node name="fire_goblin7" parent="Fire Goblins" instance=ExtResource("15_msu8f")]
-position = Vector2(1932, -1498)
+position = Vector2(1932, -1454)
 
 [node name="fire_goblin8" parent="Fire Goblins" instance=ExtResource("15_msu8f")]
 position = Vector2(1929, -1855)
@@ -759,7 +756,7 @@ position = Vector2(-149, -1794)
 position = Vector2(-567, -1489)
 
 [node name="meat8" parent="Food" instance=ExtResource("16_dkm82")]
-position = Vector2(293, -1645)
+position = Vector2(304, -1748)
 
 [node name="meat4" parent="Food" instance=ExtResource("16_dkm82")]
 position = Vector2(1616, -1489)
