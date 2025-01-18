@@ -127,7 +127,6 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 			arrow_instance = arrow.instantiate()
 			arrow_instance.global_position = global_position
 			get_parent().add_child(arrow_instance)
-			arrow_instance.update_damage_multiplier(360.0 - (global_position.distance_to(protagonist_last_loc)))
 			arrow_instance.set_landing_location(protagonist_last_loc)
 
 func _on_timer_timeout() -> void:

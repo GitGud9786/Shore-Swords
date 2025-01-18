@@ -740,6 +740,9 @@ position = Vector2(-424, -964)
 [node name="meat11" parent="Food" instance=ExtResource("16_dkm82")]
 position = Vector2(-1118, -1570)
 
+[node name="meat13" parent="Food" instance=ExtResource("16_dkm82")]
+position = Vector2(-1487, -1085)
+
 [node name="meat12" parent="Food" instance=ExtResource("16_dkm82")]
 position = Vector2(-662, -1959)
 

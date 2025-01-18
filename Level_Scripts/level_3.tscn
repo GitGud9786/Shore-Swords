@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ewsxnk6xn3p5" path="res://Scenes/tnt_goblin.tscn" id="3_brpsj"]
 
 [node name="Level_3" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Protagonist" parent="." instance=ExtResource("1_h8hhp")]
 position = Vector2(-7, -5)

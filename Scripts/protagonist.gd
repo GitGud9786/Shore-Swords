@@ -20,6 +20,7 @@ var burning_effect = false
 var shrapnel_effect = false
 
 var HEALTH = 300.00
+var MAX_HEALTH = 300.00
 const SPEED = 120.0 
 const DAMAGE= 40.0 
 
@@ -48,10 +49,9 @@ func _ready() -> void:
 	health_instance.global_position = global_position + health_bar_offset
 
 func _physics_process(delta: float) -> void:
-
-	if burning_effect:
-		take_damage(0.2)
-	if shrapnel_effect:
+	if burning_effect and not dead:
+		take_damage(0.1)
+	if shrapnel_effect and not dead:
 		take_damage(0.05)
 
 	var x_direction := Input.get_axis("move_left", "move_right")
@@ -95,7 +95,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func regen_health(health):
-	HEALTH += health
+	HEALTH = min(MAX_HEALTH, HEALTH + health)
 	health_instance.update_regen_health(health)
 
 func get_health():
