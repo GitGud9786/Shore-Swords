@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6gbhgigr7eyb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b8pf6"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="boss" type="CharacterBody2D"]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_b8pf6")
+autoplay = "default"
+frame_progress = 0.232828
