@@ -14,7 +14,10 @@ var flash_color = Color(0.5,0,0)
 var dead=false
 var start_attack_frame = 3
 var end_attack_frame = 5
+var heavy_attack_frame = 7
+var heavy_attack_end_frame = 9
 var can_interact = false
+var attack_type : int #1 for light, 2 for heavy
 
 var burning_effect = false
 var shrapnel_effect = false
@@ -62,9 +65,13 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("attack") and !dead and input_enabled:#initiate attack
 		input_enabled= 0
-		#area_collision.monitoring=true
-		var attack_type = randi() % 2 + 1
-		animated_sprite.play("knight_attack_"+str(attack_type))
+		attack_type = 1
+		animated_sprite.play("knight_attack_1")
+		
+	if Input.is_action_just_pressed("heavy_attack") and !dead and input_enabled:#initiate attack
+		input_enabled= 0
+		attack_type = 2
+		animated_sprite.play("knight_heavy_attack")
 	
 	if x_direction>0 and input_enabled and !dead:#moving right
 		animated_sprite.play("knight_running")
@@ -102,7 +109,7 @@ func get_health():
 	return HEALTH
 
 func get_damage():
-	return DAMAGE	
+	return DAMAGE * attack_type	
 
 func get_death_status():
 	return dead
@@ -123,7 +130,10 @@ func take_damage(damage) -> bool:
 		return false
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if animated_sprite.animation == "knight_attack_1" or animated_sprite.animation == "knight_attack_2":
+	if animated_sprite.animation == "knight_attack_1":
+		input_enabled= 1
+		animated_sprite.play("knight_idle")
+	elif animated_sprite.animation == "knight_heavy_attack":
 		input_enabled= 1
 		animated_sprite.play("knight_idle")
 
@@ -133,10 +143,15 @@ func _on_area_collision_body_entered(body: Node2D) -> void:
 		body.take_damage(get_damage())
 
 func _on_animated_sprite_2d_frame_changed() -> void:
-	if animated_sprite.animation == "knight_attack_1" or animated_sprite.animation == "knight_attack_2":
+	if animated_sprite.animation == "knight_attack_1":
 		if animated_sprite.frame == start_attack_frame:
 			area_collision.monitoring=true
 		elif animated_sprite.frame == end_attack_frame:
+			area_collision.monitoring=false
+	elif animated_sprite.animation == "knight_heavy_attack":
+		if animated_sprite.frame == heavy_attack_frame:
+			area_collision.monitoring=true
+		elif animated_sprite.frame == heavy_attack_end_frame:
 			area_collision.monitoring=false
 
 func _on_timer_timeout() -> void:
