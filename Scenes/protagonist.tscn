@@ -314,7 +314,7 @@ script = ExtResource("1_k8e0m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5a6hd")
-animation = &"knight_running"
+animation = &"knight_attack_2"
 autoplay = "knight_idle"
 
 [node name="area_collision" type="Area2D" parent="AnimatedSprite2D"]
