@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfoi23ql0ak1l"]
+
+[ext_resource type="Texture2D" uid="uid://brtqmvno76at6" path="res://Assets/Resources/Gold Mine/GoldMine_Active.png" id="1_7pg5t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlnen"]
+atlas = ExtResource("1_7pg5t")
+region = Rect2(0, 0, 192, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kpc02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlnen")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37hr5"]
+radius = 41.0
+height = 140.0
+
+[node name="gold_mine" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kpc02")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_37hr5")
