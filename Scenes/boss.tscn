@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b6gbhgigr7eyb"]
+[gd_scene load_steps=51 format=3 uid="uid://b6gbhgigr7eyb"]
 
 [ext_resource type="Texture2D" uid="uid://bc5h8rh5e1r66" path="res://Assets/Boss/flatten_character.png" id="1_7v1kq"]
 
@@ -69,6 +69,30 @@ region = Rect2(200, 0, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sl78v"]
 atlas = ExtResource("1_7v1kq")
 region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgibm"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(400, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehqq2"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(500, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2a6w"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(600, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxjvi"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(700, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw8yk"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(0, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgija"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(100, 400, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4jc1"]
 atlas = ExtResource("1_7v1kq")
@@ -215,6 +239,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"golem_idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgibm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehqq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2a6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxjvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw8yk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgija")
+}],
+"loop": true,
+"name": &"golem_laser",
 "speed": 6.0
 }, {
 "frames": [{
