@@ -1,5 +1,6 @@
-[gd_scene load_steps=51 format=3 uid="uid://b6gbhgigr7eyb"]
+[gd_scene load_steps=52 format=3 uid="uid://b6gbhgigr7eyb"]
 
+[ext_resource type="Script" path="res://Scripts/boss.gd" id="1_0hnfv"]
 [ext_resource type="Texture2D" uid="uid://bc5h8rh5e1r66" path="res://Assets/Boss/flatten_character.png" id="1_7v1kq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66u57"]
@@ -358,6 +359,7 @@ radius = 54.0093
 [node name="boss" type="CharacterBody2D"]
 z_index = 5
 y_sort_enabled = true
+script = ExtResource("1_0hnfv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
