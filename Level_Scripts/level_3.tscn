@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dfhriiwifqo3t"]
+[gd_scene load_steps=20 format=3 uid="uid://dfhriiwifqo3t"]
 
 [ext_resource type="Script" path="res://Level_Scripts/level_3.gd" id="1_6ep8n"]
 [ext_resource type="PackedScene" uid="uid://br2ijn5u1puis" path="res://Scenes/protagonist.tscn" id="1_h8hhp"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c3hdf8ldwvv4x" path="res://Scenes/tree.tscn" id="12_5tut5"]
 [ext_resource type="PackedScene" uid="uid://q7s8b6x5067r" path="res://Scenes/tree_trunk.tscn" id="14_qrbet"]
 [ext_resource type="PackedScene" uid="uid://c5dm3n8sp7kju" path="res://Scenes/small_stone.tscn" id="14_vqjde"]
+[ext_resource type="PackedScene" uid="uid://bgtcs43e1maxf" path="res://Scenes/relic.tscn" id="15_de8ft"]
 [ext_resource type="PackedScene" uid="uid://c7t4emwn2bhsm" path="res://Scenes/archer.tscn" id="15_wrccf"]
 [ext_resource type="PackedScene" uid="uid://cbsd2rudcjfjr" path="res://Scenes/meat.tscn" id="17_5hkq0"]
 [ext_resource type="PackedScene" uid="uid://deg064j4snopj" path="res://Scenes/medium_grass.tscn" id="18_rulrt"]
@@ -24,7 +25,7 @@ y_sort_enabled = true
 script = ExtResource("1_6ep8n")
 
 [node name="Protagonist" parent="." instance=ExtResource("1_h8hhp")]
-position = Vector2(63, 29)
+position = Vector2(63, 15)
 
 [node name="Camera2D" type="Camera2D" parent="Protagonist"]
 position = Vector2(0, -1)
@@ -68,6 +69,9 @@ position = Vector2(727, -204)
 [node name="tnt_goblin8" parent="TNT goblins" instance=ExtResource("5_tjk0c")]
 position = Vector2(-326, 837)
 
+[node name="tnt_goblin9" parent="TNT goblins" instance=ExtResource("5_tjk0c")]
+position = Vector2(-1542, 264)
+
 [node name="House" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -88,6 +92,12 @@ position = Vector2(-58, 696)
 
 [node name="house6" parent="House" instance=ExtResource("6_4p0rl")]
 position = Vector2(-442, 733)
+
+[node name="house7" parent="House" instance=ExtResource("6_4p0rl")]
+position = Vector2(-1276, 331)
+
+[node name="house8" parent="House" instance=ExtResource("6_4p0rl")]
+position = Vector2(-1394, 272)
 
 [node name="goblin house" parent="House" instance=ExtResource("7_egm01")]
 position = Vector2(319, -9)
@@ -124,6 +134,12 @@ position = Vector2(-1174, 667)
 
 [node name="Goblin tower3" parent="Tower" instance=ExtResource("8_q8ead")]
 position = Vector2(-1152, -6)
+
+[node name="Goblin tower8" parent="Tower" instance=ExtResource("8_q8ead")]
+position = Vector2(-1794, -541)
+
+[node name="Goblin tower9" parent="Tower" instance=ExtResource("8_q8ead")]
+position = Vector2(-1415, -544)
 
 [node name="Goblin tower4" parent="Tower" instance=ExtResource("8_q8ead")]
 position = Vector2(-775, -806)
@@ -393,6 +409,42 @@ position = Vector2(-1320, 807)
 [node name="Tree51" parent="Trees" instance=ExtResource("12_5tut5")]
 position = Vector2(-1306, 782)
 
+[node name="Tree52" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1312, 195)
+
+[node name="Tree53" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1303, 222)
+
+[node name="Tree54" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1628, 21)
+
+[node name="Tree59" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1712, -549)
+
+[node name="Tree60" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1835, -475)
+
+[node name="Tree61" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1751, -239)
+
+[node name="Tree62" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1688, -264)
+
+[node name="Tree63" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1639, -239)
+
+[node name="Tree55" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1435, 26)
+
+[node name="Tree56" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1379, 77)
+
+[node name="Tree57" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1438, 67)
+
+[node name="Tree58" parent="Trees" instance=ExtResource("12_5tut5")]
+position = Vector2(-1297, 217)
+
 [node name="tree_trunk10" parent="Trees" instance=ExtResource("14_qrbet")]
 position = Vector2(-1448, 957)
 
@@ -407,6 +459,9 @@ position = Vector2(-1561, 1002)
 
 [node name="tree_trunk14" parent="Trees" instance=ExtResource("14_qrbet")]
 position = Vector2(-1502, 911)
+
+[node name="relic" parent="Trees" instance=ExtResource("15_de8ft")]
+position = Vector2(-1719, -464)
 
 [node name="Stone" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -556,7 +611,7 @@ position = Vector2(711, 478)
 position = Vector2(-330, 695)
 
 [node name="archer10" parent="Archer" instance=ExtResource("15_wrccf")]
-position = Vector2(-1443, 918)
+position = Vector2(-1345, 905)
 
 [node name="archer11" parent="Archer" instance=ExtResource("15_wrccf")]
 position = Vector2(-1516, 849)
@@ -590,6 +645,12 @@ position = Vector2(1134, -162)
 
 [node name="meat8" parent="Food" instance=ExtResource("17_5hkq0")]
 position = Vector2(155, 474)
+
+[node name="meat9" parent="Food" instance=ExtResource("17_5hkq0")]
+position = Vector2(-1814, -306)
+
+[node name="meat10" parent="Food" instance=ExtResource("17_5hkq0")]
+position = Vector2(-1497, -533)
 
 [node name="Bush" type="Node2D" parent="."]
 y_sort_enabled = true
