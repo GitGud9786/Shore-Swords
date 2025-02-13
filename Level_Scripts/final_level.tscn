@@ -29,7 +29,7 @@ layer_2/tile_data = PackedInt32Array(786412, 2, 0, 786420, 2, 0, 786428, 2, 0, 7
 zoom = Vector2(1.2, 1.2)
 
 [node name="boss" parent="." instance=ExtResource("4_gs5n6")]
-position = Vector2(0, -759)
+position = Vector2(0, -702)
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true

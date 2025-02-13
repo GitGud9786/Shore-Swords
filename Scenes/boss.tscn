@@ -1,7 +1,27 @@
-[gd_scene load_steps=53 format=3 uid="uid://b6gbhgigr7eyb"]
+[gd_scene load_steps=58 format=3 uid="uid://b6gbhgigr7eyb"]
 
 [ext_resource type="Script" path="res://Scripts/boss.gd" id="1_0hnfv"]
 [ext_resource type="Texture2D" uid="uid://bc5h8rh5e1r66" path="res://Assets/Boss/flatten_character.png" id="1_7v1kq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xx7u"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlbne"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wab5m"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7klrx"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbm3o"]
+atlas = ExtResource("1_7v1kq")
+region = Rect2(0, 100, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66u57"]
 atlas = ExtResource("1_7v1kq")
@@ -183,6 +203,26 @@ region = Rect2(500, 200, 100, 100)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4xx7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlbne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wab5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7klrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbm3o")
+}],
+"loop": false,
+"name": &"golem_dash",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_66u57")
 }, {
 "duration": 1.0,
@@ -221,7 +261,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0mpav")
 }],
-"loop": true,
+"loop": false,
 "name": &"golem_dead",
 "speed": 10.0
 }, {
@@ -261,7 +301,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cgija")
 }],
-"loop": true,
+"loop": false,
 "name": &"golem_laser",
 "speed": 6.0
 }, {
@@ -313,7 +353,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_shd3x")
 }],
-"loop": true,
+"loop": false,
 "name": &"golem_projectile",
 "speed": 6.0
 }, {
@@ -367,7 +407,7 @@ script = ExtResource("1_0hnfv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_b8pf6")
-animation = &"golem_projectile"
+animation = &"golem_laser"
 autoplay = "golem_idle"
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]
@@ -393,8 +433,17 @@ shape = SubResource("CircleShape2D_igcr5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 shape = SubResource("CircleShape2D_h5wp5")
 
+[node name="dash_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="cooldown_timer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AnimatedSprite2D/attack_area_collision" to="." method="_on_attack_area_collision_body_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]

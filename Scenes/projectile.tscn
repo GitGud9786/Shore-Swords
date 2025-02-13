@@ -57,6 +57,8 @@ animations = [{
 size = Vector2(35, 14)
 
 [node name="projectile" type="CharacterBody2D"]
+z_index = 5
+scale = Vector2(2, 2)
 script = ExtResource("1_mcikc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
