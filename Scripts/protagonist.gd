@@ -46,7 +46,6 @@ func enable_shrapnel():
 	shrapnel_timer.start()
 	
 func _ready() -> void:
-	pass
 	health_instance = referred_health_bar.instantiate()
 	add_child(health_instance)
 	health_instance.global_position = global_position + health_bar_offset

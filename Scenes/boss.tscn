@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b6gbhgigr7eyb"]
+[gd_scene load_steps=62 format=3 uid="uid://b6gbhgigr7eyb"]
 
 [ext_resource type="Script" path="res://Scripts/boss.gd" id="1_0hnfv"]
 [ext_resource type="Texture2D" uid="uid://bc5h8rh5e1r66" path="res://Assets/Boss/flatten_character.png" id="1_7v1kq"]
@@ -219,7 +219,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"golem_dash",
-"speed": 6.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -303,7 +303,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"golem_laser",
-"speed": 6.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -332,7 +332,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"golem_melee",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -399,6 +399,21 @@ radius = 54.0093
 [sub_resource type="CircleShape2D" id="CircleShape2D_h5wp5"]
 radius = 696.001
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1hcy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8gk6"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7vqh"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uu4mx"]
+bg_color = Color(1, 1, 0, 1)
+
 [node name="boss" type="CharacterBody2D"]
 z_index = 5
 y_sort_enabled = true
@@ -407,7 +422,7 @@ script = ExtResource("1_0hnfv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_b8pf6")
-animation = &"golem_laser"
+animation = &"golem_idle"
 autoplay = "golem_idle"
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]
@@ -433,12 +448,41 @@ shape = SubResource("CircleShape2D_igcr5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 shape = SubResource("CircleShape2D_h5wp5")
 
-[node name="dash_timer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="cooldown_timer" type="Timer" parent="."]
 wait_time = 6.0
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="health_bar" type="ProgressBar" parent="."]
+z_index = 1
+offset_left = -94.0
+offset_top = -102.0
+offset_right = 110.0
+offset_bottom = -92.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_e1hcy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b8gk6")
+max_value = 1000.0
+value = 600.0
+show_percentage = false
+
+[node name="damage_bar" type="ProgressBar" parent="health_bar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_f7vqh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uu4mx")
+max_value = 1000.0
+value = 700.0
+show_percentage = false
+
+[node name="damage_timer" type="Timer" parent="health_bar"]
 one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
@@ -446,4 +490,5 @@ one_shot = true
 [connection signal="body_entered" from="AnimatedSprite2D/attack_area_collision" to="." method="_on_attack_area_collision_body_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
-[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="health_bar/damage_timer" to="." method="_on_damage_timer_timeout"]
