@@ -3,6 +3,7 @@ extends Node2D
 @onready var reading_script: PackedScene = preload("res://Scenes/reading_script.tscn")
 @onready var transitioner: PackedScene = preload("res://Scenes/transition_screen.tscn")
 @onready var enemy: PackedScene = preload("res://Scenes/enemy.tscn")
+var next_level: PackedScene = preload("res://Level_Scripts/level_2.tscn")
 @onready var pickup_script_11: Node2D = $"Pickup Script/pickup_script_11"
 @onready var pickup_script_12: Node2D = $"Pickup Script/pickup_script_12"
 @onready var pickup_script_13: Node2D = $"Pickup Script/pickup_script_13"
@@ -88,7 +89,9 @@ func _on_level_pass_area_body_entered(body: Node2D) -> void:
 		if body.get_node("protagonist_body_collision"):
 			body.input_disable()
 			transition_instance = transitioner.instantiate()
-			add_child(transition_instance)
+			get_tree().root.add_child(transition_instance)
 			await get_tree().create_timer(0.1).timeout
 			transition_instance.transition()
+			await transition_instance.transition_to_black
+			get_tree().change_scene_to_packed(next_level)
 			
