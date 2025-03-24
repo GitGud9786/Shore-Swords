@@ -40,31 +40,31 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if target:
+	if target and !dead:
 		direction = global_position.direction_to(target.global_position)
-	if direction.x < 0:
+	if direction.x < 0 and !dead:
 		animated_sprite.flip_h = true 
-	elif direction.x > 0:
+	elif direction.x > 0 and !dead:
 		animated_sprite.flip_h = false
 	attack_area_collision.scale = -abs(attack_area_collision.scale) if direction.x < 0 else abs(attack_area_collision.scale)
 	
 	#moveset logic from here
-	if target and first_time: #first approach
+	if target and first_time and !dead: #first approach
 		velocity = direction * SPEED
 		move_and_slide()
 		if global_position.distance_to(target.global_position)<210:
 			first_time = false
 			
-	#moderate melee range position
-	elif target and !attack_mode and 100 <= global_position.distance_to(target.global_position) and global_position.distance_to(target.global_position) < 200:
+	#first time approach
+	elif target and !dead and !attack_mode and 100 <= global_position.distance_to(target.global_position) and global_position.distance_to(target.global_position) < 150:
 		animated_sprite.play("golem_idle")
 		velocity = direction * SPEED
 		move_and_slide()
 	
-	elif target and global_position.distance_to(target.global_position) < 100 and !attack_mode:
+	elif target and !dead and global_position.distance_to(target.global_position) < 100 and !attack_mode:
 		attack_protagonist()
 	
-	elif target and !attack_mode and cooldown_timer.time_left == 0:
+	elif target and !dead and !attack_mode and cooldown_timer.time_left == 0:
 		var move = randi() % 2
 		print(move)
 		if move == 1:
@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 		elif move == 0:
 			range_attack()
 			
-	elif target and global_position.distance_to(target.global_position) > 100: #default case
+	elif target and !dead and global_position.distance_to(target.global_position) > 100: #default case
 		velocity = direction * SPEED
 		move_and_slide()
 
@@ -104,7 +104,6 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 			attack_area_collision.monitoring = false
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	beam_direction = target.global_position
 	if animated_sprite.animation == "golem_melee":
 		attack_mode = false
 	elif animated_sprite.animation == "golem_laser":
@@ -125,8 +124,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif animated_sprite.animation ==  "golem_dash":
 		attack_mode = false
 		cooldown_timer.start()
-	animated_sprite.play("golem_idle")
-	SPEED = FIXED_SPEED
+	if animated_sprite.animation != 'golem_dead':
+		animated_sprite.play("golem_idle")
+		SPEED = FIXED_SPEED
 
 func perform_dash():
 	animated_sprite.play("golem_dash")
@@ -135,6 +135,7 @@ func perform_dash():
 	
 
 func range_attack():
+	beam_direction = target.global_position
 	var projectile_type = randi() % 2
 	if projectile_type == 1:
 		animated_sprite.play("golem_laser")
