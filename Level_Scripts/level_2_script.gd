@@ -8,11 +8,15 @@ extends Node2D
 @onready var relic: Node2D = $relic
 @onready var fire_goblin: PackedScene = preload("res://Scenes/fire_goblin.tscn")
 @onready var tnt_goblin: PackedScene = preload("res://Scenes/tnt_goblin.tscn")
+@onready var level_pass_area: Area2D = $level_pass_area
+@onready var transitioner: PackedScene = preload("res://Scenes/transition_screen.tscn")
+var next_level: PackedScene = preload("res://Level_Scripts/level_3.tscn")
 
 var fire_goblin_positions = []
 var tnt_goblin_positions = []
 var spawn = true
 var script_instance : Node2D = null
+var transition_instance : CanvasLayer = null
 var enemies = 0
 
 const str_11 = "Fiery goblins..."
@@ -79,3 +83,15 @@ func _on_tnt_enemies_child_exiting_tree(node: Node) -> void:
 
 func _on_fire_goblins_child_exiting_tree(node: Node) -> void:
 	kill_counter()
+
+
+func _on_level_pass_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if relic == null: #relic is collected
+		if body.get_node("protagonist_body_collision"):
+			body.input_disable()
+			transition_instance = transitioner.instantiate()
+			get_tree().root.add_child(transition_instance)
+			await get_tree().create_timer(0.1).timeout
+			transition_instance.transition()
+			await transition_instance.transition_to_black
+			get_tree().change_scene_to_packed(next_level)

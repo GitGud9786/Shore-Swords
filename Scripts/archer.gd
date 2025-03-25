@@ -23,6 +23,7 @@ var protagonist_last_loc = Vector2.ZERO
 var last_location_direction = Vector2.ZERO
 var throw_frame = 7
 var can_attack = true
+var rate = 1.0
 
 var arrow_instance : Node2D = null
 
@@ -55,6 +56,9 @@ func update_health_bar(damage):
 	if health_bar.value<=0:
 		health_bar.queue_free()
 	damage_bar_timer.start()
+
+func update_stats():
+	rate = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -139,5 +143,5 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "archer_shooting" or animated_sprite.animation == "archer_shooting_ne" or animated_sprite.animation == "archer_shooting_se":
 		animated_sprite.play("archer_idle")
 		attack_mode=false
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(rate).timeout
 		can_attack=true
