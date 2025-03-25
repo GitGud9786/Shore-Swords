@@ -67,6 +67,11 @@ func kill_counter():
 	enemies -= 1
 	print(enemies)
 
-func _on_tnt_enemies_child_exiting_tree(node: Node) -> void:
+func _on_tnt_goblins_child_exiting_tree(node: Node) -> void:
+	if node.has_method("take_damage"):
+		kill_counter()
+
+
+func _on_archer_child_exiting_tree(node: Node) -> void:
 	if node.has_method("take_damage"):
 		kill_counter()

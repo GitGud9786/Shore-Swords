@@ -695,3 +695,6 @@ position = Vector2(-1719, -464)
 
 [node name="script1" parent="scripts" instance=ExtResource("20_gdysh")]
 position = Vector2(-1629, -540)
+
+[connection signal="child_exiting_tree" from="TNT goblins" to="." method="_on_tnt_goblins_child_exiting_tree"]
+[connection signal="child_exiting_tree" from="Archer" to="." method="_on_archer_child_exiting_tree"]

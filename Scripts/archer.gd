@@ -58,7 +58,7 @@ func update_health_bar(damage):
 	damage_bar_timer.start()
 
 func update_stats():
-	rate = 0.5
+	rate = 0.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
