@@ -303,7 +303,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"golem_laser",
-"speed": 10.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -422,7 +422,7 @@ script = ExtResource("1_0hnfv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_b8pf6")
-animation = &"golem_idle"
+animation = &"golem_laser"
 autoplay = "golem_idle"
 
 [node name="attack_area_collision" type="Area2D" parent="AnimatedSprite2D"]

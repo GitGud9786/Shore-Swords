@@ -6,12 +6,15 @@ extends Node2D
 @onready var protagonist: CharacterBody2D = $Protagonist
 @onready var tnt_goblin: PackedScene = preload("res://Scenes/tnt_goblin.tscn")
 @onready var archer: PackedScene = preload("res://Scenes/archer.tscn")
+@onready var transitioner: PackedScene = preload("res://Scenes/transition_screen.tscn")
+var next_level: PackedScene = preload("res://Level_Scripts/final_level.tscn")
 
 var script_instance : Node2D = null
 var enemies = 0
 var spawn = true
 var archer_positions = []
 var tnt_goblin_positions = []
+var transition_instance : CanvasLayer = null
 
 const str_11 = "With the relics I summon thee!"
 
@@ -75,3 +78,14 @@ func _on_tnt_goblins_child_exiting_tree(node: Node) -> void:
 func _on_archer_child_exiting_tree(node: Node) -> void:
 	if node.has_method("take_damage"):
 		kill_counter()
+
+func _on_level_pass_area_body_entered(body: Node2D) -> void:
+	if relic == null: #relic is collected
+		if body.get_node("protagonist_body_collision"):
+			body.input_disable()
+			transition_instance = transitioner.instantiate()
+			get_tree().root.add_child(transition_instance)
+			await get_tree().create_timer(0.1).timeout
+			transition_instance.transition()
+			await transition_instance.transition_to_black
+			get_tree().change_scene_to_packed(next_level)

@@ -13,6 +13,7 @@ var next_level: PackedScene = preload("res://Level_Scripts/level_2.tscn")
 @onready var pickup_script_16: Node2D = $"Pickup Script/pickup_script_16"
 @onready var relic: Node2D = $relic
 @onready var pickup_script_17: Node2D = $"Pickup Script/pickup_script_17"
+@onready var pickup_script_18: Node2D = $"Pickup Script/pickup_script_18"
 
 @onready var health_bar: ProgressBar = $Protagonist/health_bar
 
@@ -22,13 +23,14 @@ var script_instance : Node2D = null
 var transition_instance : CanvasLayer = null
 var enemies = 0
 
-const str_11 = "SPACE to attack"
+const str_11 = "A to attack"
 const str_12 = "Pawns are melee attackers"
 const str_13 = "Meat restores health"
 const str_14 = "Execute all foes for the RELIC"
 const str_15 = "The relic respawns enemies"
 const str_16 = "Head back to the start"
 const str_17 = "They will be more aggressive"
+const str_18 = "SPACE for heavy attack"
 var script_map = {
 	"11": str_11,
 	"12": str_12,
@@ -36,7 +38,8 @@ var script_map = {
 	"14": str_14,
 	"15": str_15,
 	"16": str_16,
-	"17": str_17
+	"17": str_17,
+	"18": str_18
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -48,6 +51,7 @@ func _ready() -> void:
 	pickup_script_15.set_count("15") #The relic respawns enemies
 	pickup_script_16.set_count("16") #Head back to the start
 	pickup_script_17.set_count("17")
+	pickup_script_18.set_count("18")
 	relic.choose_bronze_type()
 	var enemy_node = get_node("Enemy")
 	for child in enemy_node.get_children():

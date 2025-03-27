@@ -541,6 +541,9 @@ position = Vector2(-1501, -764)
 [node name="pickup_script_17" parent="Pickup Script" instance=ExtResource("14_oyi4h")]
 position = Vector2(-1321, -796)
 
+[node name="pickup_script_18" parent="Pickup Script" instance=ExtResource("14_oyi4h")]
+position = Vector2(44, -603)
+
 [node name="relic" parent="." instance=ExtResource("14_su3y2")]
 position = Vector2(-1442, -705)
 

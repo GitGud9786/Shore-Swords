@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var protagonist_body_collision: CollisionShape2D = $protagonist_body_collision
 @onready var incendiery_timer: Timer = $incendiery_timer
 @onready var shrapnel_timer: Timer = $shrapnel_timer
+@onready var status_bar: PackedScene = preload("res://Scenes/status_bar.tscn")
+@onready var box_container: VBoxContainer = $box_container
 
 var input_enabled = 1
 var flash_color = Color(0.5,0,0)
@@ -21,15 +23,20 @@ var attack_type : int #1 for light, 2 for heavy
 
 var burning_effect = false
 var shrapnel_effect = false
+var can_burn = true
+var can_shrapnel = true
 
 var HEALTH = 300.00
 var MAX_HEALTH = 300.00
-const SPEED = 120.0 * 3
-const DAMAGE= 40.0 * 10
+const SPEED = 120.0
+const DAMAGE= 40.0
 
 var health_bar_offset = Vector2(220,-250)
 var read_script =""
 var health_instance : ProgressBar = null
+var incendiary_bar_instance : ProgressBar = null
+var shrapnel_bar_instance : ProgressBar = null
+
 
 func input_disable():
 	input_enabled = 0
@@ -38,22 +45,38 @@ func input_disable():
 	protagonist_body_collision.disabled = true
 
 func enable_burn():
-	burning_effect = true
-	incendiery_timer.start()
+	if can_burn:
+		burning_effect = true
+		incendiary_bar_instance = status_bar.instantiate()
+		box_container.add_child(incendiary_bar_instance)
+		incendiary_bar_instance.update_label("Burning")
+		incendiary_bar_instance.ready_bar(8)
+		incendiery_timer.start()
+		can_burn = false
 	
 func enable_shrapnel():
-	shrapnel_effect = true
-	shrapnel_timer.start()
+	if can_shrapnel:
+		shrapnel_effect = true
+		shrapnel_bar_instance = status_bar.instantiate()
+		box_container.add_child(shrapnel_bar_instance)
+		shrapnel_bar_instance.update_label("Shrapnel")
+		shrapnel_bar_instance.ready_bar(15)
+		shrapnel_timer.start()
+		can_shrapnel = false
 	
 func _ready() -> void:
+	box_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	health_instance = referred_health_bar.instantiate()
 	add_child(health_instance)
+	health_instance.ready_bar(HEALTH)
 	health_instance.global_position = global_position + health_bar_offset
 
 func _physics_process(delta: float) -> void:
 	if burning_effect and not dead:
 		take_damage(0.1)
+		incendiary_bar_instance.update_bar(incendiery_timer.time_left)
 	if shrapnel_effect and not dead:
+		shrapnel_bar_instance.update_bar(shrapnel_timer.time_left)
 		take_damage(0.05)
 
 	var x_direction := Input.get_axis("move_left", "move_right")
@@ -172,7 +195,11 @@ func _on_death_timer_timeout() -> void:
 
 func _on_incendiery_timer_timeout() -> void:
 	burning_effect=false
+	can_burn = true
+	incendiary_bar_instance.queue_free()
 
 
 func _on_shrapnel_timer_timeout() -> void:
 	shrapnel_effect=false
+	can_shrapnel = true
+	shrapnel_bar_instance.queue_free()

@@ -150,6 +150,8 @@ func take_damage(damage) -> bool:
 	damage_timer.start()
 	if HEALTH<=0:
 		dead=true
+		if target:
+			target.input_disable()
 		velocity = Vector2.ZERO
 		animated_sprite.play("golem_dead")
 		return true

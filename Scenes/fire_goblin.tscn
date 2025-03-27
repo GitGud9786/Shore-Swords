@@ -259,7 +259,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krnq0"]
-size = Vector2(49, 65)
+size = Vector2(49, 90)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4810e"]
 size = Vector2(41.5, 12.5)
@@ -336,7 +336,7 @@ autoplay = "firegoblin_idle"
 monitoring = false
 
 [node name="attack_collision" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
-position = Vector2(45.5, -0.5)
+position = Vector2(45.5, 0)
 shape = SubResource("RectangleShape2D_krnq0")
 
 [node name="attack_collision_1" type="CollisionShape2D" parent="AnimatedSprite2D/attack_area_collision"]
