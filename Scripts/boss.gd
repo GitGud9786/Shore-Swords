@@ -32,6 +32,9 @@ var beam_instance: Node2D = null
 var projectile_instance: Node2D = null
 var flash_color = Color(0.5,0,0)
 
+func status():
+	return dead
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health_bar.max_value = 1000

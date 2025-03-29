@@ -376,21 +376,6 @@ action_mode = 0
 text = "START"
 icon_alignment = 1
 
-[node name="info_button" type="Button" parent="VBoxContainer"]
-z_index = 5
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("1_el3ht")
-theme_override_fonts/font = ExtResource("3_7cdiy")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxTexture_whmt8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_stoy8")
-theme_override_styles/normal = SubResource("StyleBoxTexture_clp5i")
-action_mode = 0
-text = "INFO
-"
-icon_alignment = 1
-
 [node name="quit_button" type="Button" parent="VBoxContainer"]
 z_index = 5
 layout_mode = 2

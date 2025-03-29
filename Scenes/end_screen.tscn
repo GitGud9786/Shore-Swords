@@ -1,0 +1,252 @@
+[gd_scene load_steps=35 format=3 uid="uid://ke73dkk27ypg"]
+
+[ext_resource type="PackedScene" uid="uid://bvtypihj7sslk" path="res://Scenes/map.tscn" id="1_2bkb1"]
+[ext_resource type="Script" path="res://Scripts/end_screen.gd" id="1_cx4vw"]
+[ext_resource type="PackedScene" uid="uid://dou4n7hghg1g2" path="res://Scenes/water_map.tscn" id="1_oohu0"]
+[ext_resource type="PackedScene" uid="uid://c3hdf8ldwvv4x" path="res://Scenes/tree.tscn" id="3_dla3w"]
+[ext_resource type="PackedScene" uid="uid://bbyccgqcupgyv" path="res://Scenes/death_sign.tscn" id="4_tcd0f"]
+[ext_resource type="Texture2D" uid="uid://boir4mni7hj1s" path="res://Assets/Factions/Knights/Troops/Pawn/Red/Pawn_Red.png" id="5_6ci6d"]
+[ext_resource type="Texture2D" uid="uid://ppal275oky4v" path="res://Assets/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="5_k2iso"]
+[ext_resource type="Theme" uid="uid://d8yk7wl1m04h" path="res://UI_theme.tres" id="7_r8ec5"]
+[ext_resource type="Texture2D" uid="uid://c70jc25mgvmys" path="res://Assets/UI/Buttons/Button_Red_3Slides.png" id="8_mtt20"]
+[ext_resource type="Texture2D" uid="uid://ctd6pottr13jq" path="res://Assets/UI/Buttons/Button_Red_3Slides_Pressed.png" id="8_w1yvr"]
+[ext_resource type="Texture2D" uid="uid://cabkt1g4p0tfa" path="res://Assets/UI/Ribbons/Ribbon_Red_3Slides.png" id="11_p3jnn"]
+[ext_resource type="Texture2D" uid="uid://c87v6dpein2ca" path="res://Assets/UI/Buttons/Button_Blue_3Slides.png" id="12_i5iwj"]
+[ext_resource type="Texture2D" uid="uid://ylruh5o61sxc" path="res://Assets/UI/Buttons/Button_Blue_3Slides_Pressed.png" id="13_4bpfy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v32f6"]
+atlas = ExtResource("5_k2iso")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1vly"]
+atlas = ExtResource("5_k2iso")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6krh6"]
+atlas = ExtResource("5_k2iso")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khu4s"]
+atlas = ExtResource("5_k2iso")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi1ap"]
+atlas = ExtResource("5_k2iso")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qudw"]
+atlas = ExtResource("5_k2iso")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkg28"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v32f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1vly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6krh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khu4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi1ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qudw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix7nj"]
+atlas = ExtResource("5_6ci6d")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd1ar"]
+atlas = ExtResource("5_6ci6d")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cemoj"]
+atlas = ExtResource("5_6ci6d")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjwmb"]
+atlas = ExtResource("5_6ci6d")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4dfb"]
+atlas = ExtResource("5_6ci6d")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0iph"]
+atlas = ExtResource("5_6ci6d")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8jdi3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix7nj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd1ar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cemoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjwmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4dfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0iph")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ooos"]
+texture = ExtResource("8_mtt20")
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4v6j4"]
+texture = ExtResource("8_w1yvr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g5j1j"]
+texture = ExtResource("8_mtt20")
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pocf7"]
+texture = ExtResource("11_p3jnn")
+texture_margin_top = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d6n5n"]
+texture = ExtResource("12_i5iwj")
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ueqc4"]
+texture = ExtResource("13_4bpfy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g6as0"]
+texture = ExtResource("12_i5iwj")
+texture_margin_bottom = 10.0
+
+[node name="Control" type="Control"]
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_cx4vw")
+
+[node name="TileMap2" parent="." instance=ExtResource("1_2bkb1")]
+layer_0/tile_data = PackedInt32Array(327682, 196611, 4, 393218, 196611, 5, 458765, 3, 4, 524301, 3, 5, 458766, 65539, 4, 524302, 65539, 5, 458767, 131075, 4, 524303, 131075, 5, 131076, 3, 0, 196612, 3, 1, 131077, 65539, 0, 196613, 65539, 1, 262148, 3, 2, 327684, 3, 3, 262149, 65539, 2, 327685, 65539, 3, 131078, 131075, 0, 196614, 131075, 1, 262150, 131075, 2, 327686, 131075, 3, 196622, 196611, 4, 262158, 196611, 5, 524292, 3, 4, 589828, 3, 5, 524293, 65539, 4, 589829, 65539, 5, 524294, 131075, 4, 589830, 131075, 5, 9, 65539, 1, 10, 65539, 1, 11, 65539, 1, 8, 3, 1, 65544, 3, 1, 131080, 3, 1, 196616, 3, 2, 262152, 3, 3, 196617, 65539, 2, 262153, 65539, 3, 196618, 131075, 2, 262154, 131075, 3, 131083, 131075, 2, 196619, 131075, 3, 65548, 131075, 2, 131084, 131075, 3, 65547, 65539, 1, 65546, 65539, 1, 65545, 65539, 1, 131081, 65539, 1, 131082, 65539, 1, 12, 131075, 1)
+layer_1/tile_data = PackedInt32Array(458765, 4, 3, 458766, 65540, 3, 458767, 131076, 3, 327682, 196612, 3, 524301, 65541, 1, 524302, 65541, 1, 524303, 65541, 1, 393218, 65541, 1, 458754, 65541, 2, 589837, 65541, 2, 589838, 65541, 2, 589839, 65541, 2, 524304, 131077, 1, 524300, 5, 1, 393217, 5, 1, 393219, 131077, 1, 196622, 196612, 3, 196611, 5, 1, 262147, 5, 1, 131076, 4, 0, 196612, 4, 1, 262148, 4, 2, 131077, 65540, 0, 196613, 65540, 1, 262149, 65540, 2, 131078, 131076, 0, 196614, 131076, 1, 327683, 5, 1, 327684, 65541, 1, 393220, 65541, 2, 327685, 65541, 1, 393221, 65541, 2, 262150, 131076, 2, 327686, 65541, 1, 393222, 65541, 2, 196615, 5, 1, 262151, 5, 1, 327687, 131077, 1, 262158, 65541, 1, 262157, 5, 1, 262159, 131077, 1, 589828, 65541, 1, 589829, 65541, 1, 589830, 65541, 1, 655364, 65541, 2, 655365, 65541, 2, 655366, 65541, 2, 589831, 131077, 1, 589827, 5, 1, 524292, 327684, 3, 524293, 393220, 3, 524294, 458756, 3, 262152, 65541, 1, 262153, 65541, 1, 262154, 65541, 1, 196619, 65541, 1, 131084, 65541, 1, 327688, 65541, 2, 327689, 65541, 2, 327690, 65541, 2, 262155, 65541, 2, 196620, 65541, 2, 65549, 131077, 1, 131085, 131077, 1, 131079, 5, 1, 65543, 5, 1, 8, 4, 1, 65544, 4, 1, 131080, 4, 1, 196616, 4, 2, 196617, 65540, 2, 196618, 131076, 2, 131083, 131076, 2, 65548, 131076, 2, 12, 131076, 1, 11, 65540, 1, 10, 65540, 1, 9, 65540, 1, 65545, 65540, 1, 65546, 65540, 1, 65547, 65540, 1, 131082, 65540, 1, 131081, 65540, 1)
+layer_2/name = "bridge"
+layer_2/tile_data = PackedInt32Array(458757, 6, 2, 524293, 6, 3, 393221, 6, 2, 327685, 6, 2, 262149, 6, 1, 262155, 131077, 1, 196620, 131077, 1)
+
+[node name="TileMap" parent="." instance=ExtResource("1_oohu0")]
+layer_1/name = "Water2"
+layer_1/tile_data = PackedInt32Array(5046275, 4, 0, 5046283, 4, 0, 5046291, 4, 0, 5046299, 4, 0, 5046307, 4, 0, 5046315, 4, 0, 5046323, 4, 0, 5046331, 4, 0, 5046339, 4, 0, 5046347, 4, 0, 5046355, 4, 0, 5046363, 4, 0, 5046370, 4, 0, 5046378, 4, 0, 5046386, 4, 0, 5046394, 4, 0, 5046402, 4, 0, 5046410, 4, 0, 4521987, 4, 0, 4521995, 4, 0, 4522003, 4, 0, 4522011, 4, 0, 4522019, 4, 0, 4522027, 4, 0, 4522035, 4, 0, 4522043, 4, 0, 4522051, 4, 0, 4522059, 4, 0, 4522067, 4, 0, 4522075, 4, 0, 4522082, 4, 0, 4522090, 4, 0, 4522098, 4, 0, 4522106, 4, 0, 4522114, 4, 0, 4522122, 4, 0, 3997699, 4, 0, 3997707, 4, 0, 3997715, 4, 0, 3997723, 4, 0, 3997731, 4, 0, 3997739, 4, 0, 3997747, 4, 0, 3997755, 4, 0, 3997763, 4, 0, 3997771, 4, 0, 3997779, 4, 0, 3997787, 4, 0, 3997794, 4, 0, 3997802, 4, 0, 3997810, 4, 0, 3997818, 4, 0, 3997826, 4, 0, 3997834, 4, 0, 3473411, 4, 0, 3473419, 4, 0, 3473427, 4, 0, 3473435, 4, 0, 3473443, 4, 0, 3473451, 4, 0, 3473459, 4, 0, 3473467, 4, 0, 3473475, 4, 0, 3473483, 4, 0, 3473491, 4, 0, 3473499, 4, 0, 3473506, 4, 0, 3473514, 4, 0, 3473522, 4, 0, 3473530, 4, 0, 3473538, 4, 0, 3473546, 4, 0, 2949123, 4, 0, 2949131, 4, 0, 2949139, 4, 0, 2949147, 4, 0, 2949155, 4, 0, 2949163, 4, 0, 2949171, 4, 0, 2949179, 4, 0, 2949187, 4, 0, 2949195, 4, 0, 2949203, 4, 0, 2949211, 4, 0, 2949218, 4, 0, 2949226, 4, 0, 2949234, 4, 0, 2949242, 4, 0, 2949250, 4, 0, 2949258, 4, 0, 327683, 4, 0, 851971, 4, 0, 1376259, 4, 0, 1900547, 4, 0, 2424835, 4, 0, 327691, 4, 0, 851979, 4, 0, 1376267, 4, 0, 1900555, 4, 0, 2424843, 4, 0, 327699, 4, 0, 851987, 4, 0, 1376275, 4, 0, 1900563, 4, 0, 2424851, 4, 0, 327707, 4, 0, 851995, 4, 0, 1376283, 4, 0, 1900571, 4, 0, 2424859, 4, 0, 327715, 4, 0, 852003, 4, 0, 1376291, 4, 0, 1900579, 4, 0, 2424867, 4, 0, 327723, 4, 0, 852011, 4, 0, 1376299, 4, 0, 1900587, 4, 0, 2424875, 4, 0, 327731, 4, 0, 852019, 4, 0, 1376307, 4, 0, 1900595, 4, 0, 2424883, 4, 0, 327739, 4, 0, 852027, 4, 0, 1376315, 4, 0, 1900603, 4, 0, 2424891, 4, 0, 327747, 4, 0, 852035, 4, 0, 1376323, 4, 0, 1900611, 4, 0, 2424899, 4, 0, 327755, 4, 0, 852043, 4, 0, 1376331, 4, 0, 1900619, 4, 0, 2424907, 4, 0, 327763, 4, 0, 852051, 4, 0, 1376339, 4, 0, 1900627, 4, 0, 2424915, 4, 0, 327771, 4, 0, 852059, 4, 0, 1376347, 4, 0, 1900635, 4, 0, 2424923, 4, 0, 327778, 4, 0, 852066, 4, 0, 1376354, 4, 0, 1900642, 4, 0, 2424930, 4, 0, 327786, 4, 0, 852074, 4, 0, 1376362, 4, 0, 1900650, 4, 0, 2424938, 4, 0, 327794, 4, 0, 852082, 4, 0, 1376370, 4, 0, 1900658, 4, 0, 2424946, 4, 0, 327802, 4, 0, 852090, 4, 0, 1376378, 4, 0, 1900666, 4, 0, 2424954, 4, 0, 327810, 4, 0, 852098, 4, 0, 1376386, 4, 0, 1900674, 4, 0, 2424962, 4, 0, 327818, 4, 0, 852106, 4, 0, 1376394, 4, 0, 1900682, 4, 0, 2424970, 4, 0, -196605, 4, 0, -196597, 4, 0, -196589, 4, 0, -196581, 4, 0, -196573, 4, 0, -196565, 4, 0, -196557, 4, 0, -196549, 4, 0, -196541, 4, 0, -196533, 4, 0, -196525, 4, 0, -196517, 4, 0, -196510, 4, 0, -196502, 4, 0, -196494, 4, 0, -196486, 4, 0, -196478, 4, 0, -196470, 4, 0, -196462, 4, 0, 327826, 4, 0, 852114, 4, 0, 1376402, 4, 0, 1900690, 4, 0, 2424978, 4, 0, 2949266, 4, 0, 3473554, 4, 0, 3997842, 4, 0, 4522130, 4, 0, 5046418, 4, 0)
+layer_2/name = "Foam"
+layer_2/tile_data = PackedInt32Array(3407891, 2, 0, 3407892, 2, 0, 4456556, 2, 0, 4456564, 2, 0, 4456571, 2, 0, 4456555, 2, 0, 4456572, 2, 0, 1769508, 2, 0, 2293796, 2, 0, 2818084, 2, 0, 2818092, 2, 0, 1769523, 2, 0, 2293811, 2, 0, 2818099, 2, 0, 2359411, 2, 0, 2359412, 2, 0, 4456476, 3, 0, 2883673, 3, 0, 1179662, 3, 0, 655493, 3, 0, 4849799, 3, 0, 3538991, 3, 0, 4980771, 2, 0, 4980779, 2, 0, 4980787, 2, 0, 4980788, 2, 0, 2293828, 2, 0, 2293836, 2, 0, 2293843, 2, 0, 1769563, 2, 0, 1245283, 2, 0, 720995, 2, 0, 1835076, 2, 0, 1310788, 2, 0, 786500, 2, 0)
+
+[node name="Tree" parent="." instance=ExtResource("3_dla3w")]
+position = Vector2(402, 217)
+
+[node name="Tree2" parent="." instance=ExtResource("3_dla3w")]
+position = Vector2(422, 168)
+
+[node name="Tree3" parent="." instance=ExtResource("3_dla3w")]
+position = Vector2(372, 162)
+
+[node name="Tree4" parent="." instance=ExtResource("3_dla3w")]
+position = Vector2(928, 203)
+
+[node name="Death Sign" parent="." instance=ExtResource("4_tcd0f")]
+position = Vector2(157, 323)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+position = Vector2(882, 456)
+sprite_frames = SubResource("SpriteFrames_fkg28")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+z_index = 5
+position = Vector2(303, 232)
+sprite_frames = SubResource("SpriteFrames_8jdi3")
+autoplay = "default"
+
+[node name="Tree5" parent="." instance=ExtResource("3_dla3w")]
+position = Vector2(735, 149)
+
+[node name="Tree6" parent="." instance=ExtResource("3_dla3w")]
+position = Vector2(763, 96)
+
+[node name="Tree7" parent="." instance=ExtResource("3_dla3w")]
+position = Vector2(652, 206)
+
+[node name="Tree8" parent="." instance=ExtResource("3_dla3w")]
+position = Vector2(675, 163)
+
+[node name="play_again" type="Button" parent="."]
+z_index = 6
+layout_mode = 0
+offset_left = 510.0
+offset_top = 399.0
+offset_right = 687.0
+offset_bottom = 465.0
+theme = ExtResource("7_r8ec5")
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/hover = SubResource("StyleBoxTexture_2ooos")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4v6j4")
+theme_override_styles/normal = SubResource("StyleBoxTexture_g5j1j")
+text = "Play again"
+
+[node name="Label" type="Label" parent="."]
+z_index = 6
+layout_mode = 0
+offset_left = 470.0
+offset_top = 272.0
+offset_right = 727.0
+offset_bottom = 380.0
+theme = ExtResource("7_r8ec5")
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_pocf7")
+text = "THE
+END"
+horizontal_alignment = 1
+
+[node name="exit_button" type="Button" parent="."]
+z_index = 6
+layout_mode = 0
+offset_left = 510.0
+offset_top = 465.0
+offset_right = 687.0
+offset_bottom = 531.0
+theme = ExtResource("7_r8ec5")
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/hover = SubResource("StyleBoxTexture_d6n5n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ueqc4")
+theme_override_styles/normal = SubResource("StyleBoxTexture_g6as0")
+text = "EXIT"
+
+[connection signal="pressed" from="play_again" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="exit_button" to="." method="_on_exit_button_pressed"]

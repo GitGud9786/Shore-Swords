@@ -1,13 +1,11 @@
 extends Control
 
 @onready var start_button: Button = $VBoxContainer/start_button
-@onready var info_button: Button = $VBoxContainer/info_button
 @onready var quit_button: Button = $VBoxContainer/quit_button
 @onready var level_loader: PackedScene = preload("res://Scenes/Game.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start_button.focus_mode = Control.FOCUS_NONE
-	info_button.focus_mode = Control.FOCUS_NONE
 	quit_button.focus_mode = Control.FOCUS_NONE
 
 
