@@ -36,6 +36,8 @@ func _process(delta: float) -> void:
 	if boss.status() and once:
 		once = false
 		show_last_scene()
+	if boss.status():
+		final_music.volume_db = lerp(float(final_music.volume_db), float(-80), 0.1 * delta)
 		
 func show_last_scene():
 	transition_instance = transitioner.instantiate()

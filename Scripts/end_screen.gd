@@ -9,8 +9,7 @@ extends Control
 var transition_instance : CanvasLayer = null
 
 
-var fade_in_speed = 1.5
-var fade_out_speed = 0.1
+var fade_in_speed = 1.0
 var load_music = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
