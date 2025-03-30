@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var damage_bar_timer: Timer = $health_bar/damage_bar_timer
 @onready var body_collision: CollisionShape2D = $body_collision
 
-const SPEED = 90.0
+const SPEED = 95.0
 
 var HEALTH = 100
 var DAMAGE = 40.0

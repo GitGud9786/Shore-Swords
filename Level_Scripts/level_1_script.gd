@@ -107,6 +107,7 @@ func _on_level_pass_area_body_entered(body: Node2D) -> void:
 	if relic == null: #relic is collected
 		if body.get_node("protagonist_body_collision"):
 			body.input_disable()
+			body.invincible()
 			transition_instance = transitioner.instantiate()
 			get_tree().root.add_child(transition_instance)
 			await get_tree().create_timer(0.1).timeout

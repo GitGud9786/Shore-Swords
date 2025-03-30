@@ -14,7 +14,7 @@ extends CharacterBody2D
 
 var HEALTH = 100
 var DAMAGE = 25
-var SPEED = 90.0
+var SPEED = 95.0
 
 var attack_mode = false
 var lock_on=false
@@ -24,7 +24,6 @@ var last_location_direction = Vector2.ZERO
 var dead= false
 var start_attack_frame = 3
 var end_attack_frame = 5
-
 
 func get_health():
 	return HEALTH

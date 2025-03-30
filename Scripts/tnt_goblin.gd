@@ -12,7 +12,7 @@ extends CharacterBody2D
 @onready var body_collision: CollisionShape2D = $body_collision
 
 
-const SPEED = 80.0
+const SPEED = 75.0
 
 var HEALTH = 110
 var DAMAGE = 40

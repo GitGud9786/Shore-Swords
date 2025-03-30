@@ -684,9 +684,6 @@ position = Vector2(-735, -774)
 [node name="tnt_goblin12" parent="TNT enemies" instance=ExtResource("14_fcjda")]
 position = Vector2(-705, -1215)
 
-[node name="tnt_goblin10" parent="TNT enemies" instance=ExtResource("14_fcjda")]
-position = Vector2(-866, -419)
-
 [node name="tnt_goblin11" parent="TNT enemies" instance=ExtResource("14_fcjda")]
 position = Vector2(-1333, -673)
 
@@ -722,9 +719,6 @@ position = Vector2(-573, -2120)
 
 [node name="fire_goblin14" parent="Fire Goblins" instance=ExtResource("15_msu8f")]
 position = Vector2(-1425, -2052)
-
-[node name="fire_goblin15" parent="Fire Goblins" instance=ExtResource("15_msu8f")]
-position = Vector2(-1087, -2217)
 
 [node name="fire_goblin7" parent="Fire Goblins" instance=ExtResource("15_msu8f")]
 position = Vector2(1932, -1454)
