@@ -28,8 +28,8 @@ var can_shrapnel = true
 
 var HEALTH = 300.00
 var MAX_HEALTH = 300.00
-const SPEED = 125.0 * 3
-const DAMAGE= 40.0 * 10
+const SPEED = 125.0
+const DAMAGE= 40.0
 
 var health_bar_offset = Vector2(220,-250)
 var read_script =""
