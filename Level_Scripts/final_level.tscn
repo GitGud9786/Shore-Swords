@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cso1dh0ddgubw"]
+[gd_scene load_steps=9 format=3 uid="uid://cso1dh0ddgubw"]
 
 [ext_resource type="PackedScene" uid="uid://bvtypihj7sslk" path="res://Scenes/map.tscn" id="1_uwmjl"]
 [ext_resource type="Script" path="res://Level_Scripts/final_level.gd" id="1_ywac6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b6gbhgigr7eyb" path="res://Scenes/boss.tscn" id="4_gs5n6"]
 [ext_resource type="PackedScene" uid="uid://c3hdf8ldwvv4x" path="res://Scenes/tree.tscn" id="5_jt6cw"]
 [ext_resource type="PackedScene" uid="uid://bbyccgqcupgyv" path="res://Scenes/death_sign.tscn" id="6_fh75l"]
+[ext_resource type="AudioStream" uid="uid://brthkxsdpwpkl" path="res://Soundtracks/final-level.mp3" id="8_7e4ml"]
 
 [node name="final_level" type="Node2D"]
 y_sort_enabled = true
@@ -53,3 +54,8 @@ position = Vector2(416, -759)
 
 [node name="Death Sign" parent="." instance=ExtResource("6_fh75l")]
 position = Vector2(-551, -381)
+
+[node name="final_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7e4ml")
+volume_db = -80.0
+autoplay = true

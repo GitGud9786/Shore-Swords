@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var level_3_music: AudioStreamPlayer = $level_3_music
 @onready var reading_script: PackedScene = preload("res://Scenes/reading_script.tscn")
 @onready var relic: Node2D = $relic
 @onready var pickup_script_11: Node2D = $scripts/script1
@@ -15,6 +16,11 @@ var spawn = true
 var archer_positions = []
 var tnt_goblin_positions = []
 var transition_instance : CanvasLayer = null
+
+var fade_in_speed = 1.5
+var fade_out_speed = 0.1
+var load_music = true
+var reload = true
 
 const str_11 = "With the relics I summon thee!"
 
@@ -48,6 +54,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if protagonist.get_death_status():
+		level_3_music.volume_db = lerp(float(level_3_music.volume_db), float(-80), fade_out_speed * delta)
+		if reload:
+			reload = false	
+			reset_level()
+	
+	if load_music:
+		level_3_music.volume_db = lerp(float(level_3_music.volume_db), float(-10), fade_in_speed * delta)
+		if level_3_music.volume_db == -10:
+			load_music = false
+	
+	
 	if relic!=null and enemies==0: #spawn relic after all killed
 		relic.get_node("relic_area_collision").monitoring = true
 		relic.visible = true
@@ -68,7 +86,6 @@ func _process(delta: float) -> void:
 
 func kill_counter():
 	enemies -= 1
-	print(enemies)
 
 func _on_tnt_goblins_child_exiting_tree(node: Node) -> void:
 	if node.has_method("take_damage"):
@@ -89,3 +106,11 @@ func _on_level_pass_area_body_entered(body: Node2D) -> void:
 			transition_instance.transition()
 			await transition_instance.transition_to_black
 			get_tree().change_scene_to_packed(next_level)
+			
+func reset_level():
+	transition_instance = transitioner.instantiate()
+	get_tree().root.add_child(transition_instance)
+	await get_tree().create_timer(2.0).timeout
+	transition_instance.transition()
+	await transition_instance.transition_to_black
+	get_tree().reload_current_scene()

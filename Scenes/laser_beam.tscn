@@ -117,7 +117,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_583i3"]
-size = Vector2(660, 80)
+size = Vector2(792, 96)
 
 [node name="laser_beam" type="CharacterBody2D"]
 z_index = 6
@@ -125,7 +125,7 @@ y_sort_enabled = true
 script = ExtResource("1_06jlx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ya4fg")
 animation = &"beam"
 autoplay = "beam"
@@ -136,7 +136,7 @@ offset = Vector2(97, 17)
 [node name="attack_area_collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area_collision"]
-position = Vector2(288, 3)
+position = Vector2(345, 4)
 shape = SubResource("RectangleShape2D_583i3")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

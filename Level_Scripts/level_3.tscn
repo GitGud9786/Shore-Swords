@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfhriiwifqo3t"]
+[gd_scene load_steps=23 format=3 uid="uid://dfhriiwifqo3t"]
 
 [ext_resource type="Script" path="res://Level_Scripts/level_3.gd" id="1_6ep8n"]
 [ext_resource type="PackedScene" uid="uid://br2ijn5u1puis" path="res://Scenes/protagonist.tscn" id="1_h8hhp"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cbsd2rudcjfjr" path="res://Scenes/meat.tscn" id="17_5hkq0"]
 [ext_resource type="PackedScene" uid="uid://deg064j4snopj" path="res://Scenes/medium_grass.tscn" id="18_rulrt"]
 [ext_resource type="PackedScene" uid="uid://bams2nduvwxns" path="res://Scenes/script.tscn" id="20_gdysh"]
+[ext_resource type="AudioStream" uid="uid://bhnuwie1iwo8e" path="res://Soundtracks/level-3.mp3" id="21_vj2bi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odatl"]
 size = Vector2(133, 189)
@@ -705,6 +706,14 @@ z_index = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="level_pass_area"]
 position = Vector2(57.5, 31.5)
 shape = SubResource("RectangleShape2D_odatl")
+
+[node name="level_3_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_vj2bi")
+volume_db = -80.0
+autoplay = true
+
+[node name="meat" parent="." instance=ExtResource("17_5hkq0")]
+position = Vector2(-1517, 1010)
 
 [connection signal="child_exiting_tree" from="TNT goblins" to="." method="_on_tnt_goblins_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Archer" to="." method="_on_archer_child_exiting_tree"]

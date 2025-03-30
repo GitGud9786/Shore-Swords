@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dhvipu3sugey8"]
+[gd_scene load_steps=58 format=3 uid="uid://dhvipu3sugey8"]
 
 [ext_resource type="Texture2D" uid="uid://c87v6dpein2ca" path="res://Assets/UI/Buttons/Button_Blue_3Slides.png" id="1_3r6op"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_44go7"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cbsd2rudcjfjr" path="res://Scenes/meat.tscn" id="17_itcow"]
 [ext_resource type="PackedScene" uid="uid://d32pnovit8o40" path="res://Scenes/wood.tscn" id="18_36gdc"]
 [ext_resource type="PackedScene" uid="uid://deg064j4snopj" path="res://Scenes/medium_grass.tscn" id="19_v8tfb"]
+[ext_resource type="AudioStream" uid="uid://d0cj5ww2lkun8" path="res://Soundtracks/main-menu.mp3" id="21_ypdid"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rs2to"]
 atlas = ExtResource("4_ddf08")
@@ -481,6 +482,11 @@ position = Vector2(420, 3)
 
 [node name="tree_trunk3" parent="." instance=ExtResource("15_mgvtu")]
 position = Vector2(161, 70)
+
+[node name="main_menu_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_ypdid")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="button_up" from="VBoxContainer/start_button" to="." method="_on_start_button_button_up"]
 [connection signal="pressed" from="VBoxContainer/start_button" to="." method="_on_start_button_pressed"]

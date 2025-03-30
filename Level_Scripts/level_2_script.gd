@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var level_2_music: AudioStreamPlayer = $level_2_music
 @onready var reading_script: PackedScene = preload("res://Scenes/reading_script.tscn")
 @onready var pickup_script_11: Node2D = $"Pickup Script/script1"
 @onready var pickup_script_12: Node2D = $"Pickup Script/script2"
@@ -18,6 +19,10 @@ var spawn = true
 var script_instance : Node2D = null
 var transition_instance : CanvasLayer = null
 var enemies = 0
+var fade_in_speed = 1.5
+var fade_out_speed = 0.1
+var load_music = true
+var reload = true
 
 const str_11 = "Fiery goblins..."
 const str_12 = "Beware of EXPLOSIVES!"
@@ -47,6 +52,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if protagonist.get_death_status():
+		level_2_music.volume_db = lerp(float(level_2_music.volume_db), float(-80), fade_out_speed * delta)
+		if reload:
+			reload = false	
+			reset_level()
+	
+	if load_music:
+		level_2_music.volume_db = lerp(float(level_2_music.volume_db), float(-10), fade_in_speed * delta)
+		if level_2_music.volume_db == -10:
+			load_music = false
+	
 	if relic!=null and enemies==0: #spawn relic after all killed
 		relic.get_node("relic_area_collision").monitoring = true
 		relic.visible = true
@@ -74,7 +90,6 @@ func create_read_script(read_script):
 		
 func kill_counter():
 	enemies -= 1
-	print(enemies)
 
 func _on_tnt_enemies_child_exiting_tree(node: Node) -> void:
 	if node.has_method("take_damage"):
@@ -95,3 +110,11 @@ func _on_level_pass_area_body_shape_entered(body_rid: RID, body: Node2D, body_sh
 			transition_instance.transition()
 			await transition_instance.transition_to_black
 			get_tree().change_scene_to_packed(next_level)
+			
+func reset_level():
+	transition_instance = transitioner.instantiate()
+	get_tree().root.add_child(transition_instance)
+	await get_tree().create_timer(2.0).timeout
+	transition_instance.transition()
+	await transition_instance.transition_to_black
+	get_tree().reload_current_scene()

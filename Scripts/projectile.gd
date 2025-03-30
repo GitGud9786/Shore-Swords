@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var DAMAGE = 50.0
-var SPEED = 500.0
+var SPEED = 1000.0
 var starting_direction = Vector2.ZERO
 var direction = Vector2.ZERO
 var landing_location = Vector2.ZERO

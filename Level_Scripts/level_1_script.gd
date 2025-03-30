@@ -14,6 +14,7 @@ var next_level: PackedScene = preload("res://Level_Scripts/level_2.tscn")
 @onready var relic: Node2D = $relic
 @onready var pickup_script_17: Node2D = $"Pickup Script/pickup_script_17"
 @onready var pickup_script_18: Node2D = $"Pickup Script/pickup_script_18"
+@onready var level_1_music: AudioStreamPlayer = $level_1_music
 
 @onready var health_bar: ProgressBar = $Protagonist/health_bar
 
@@ -22,6 +23,10 @@ var spawn = true
 var script_instance : Node2D = null
 var transition_instance : CanvasLayer = null
 var enemies = 0
+var fade_in_speed = 1.5
+var fade_out_speed = 0.1
+var load_music = true
+var reload = true
 
 const str_11 = "A to attack"
 const str_12 = "Pawns are melee attackers"
@@ -61,6 +66,17 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if protagonist.get_death_status():
+		level_1_music.volume_db = lerp(float(level_1_music.volume_db), float(-80), fade_out_speed * delta)
+		if reload:
+			reload = false	
+			reset_level()
+	
+	if load_music:
+		level_1_music.volume_db = lerp(float(level_1_music.volume_db), float(-10), fade_in_speed * delta)
+		if level_1_music.volume_db == -10:
+			load_music = false
+			
 	if relic!=null and enemies==0: #spawn relic after all killed
 		relic.get_node("relic_area_collision").monitoring = true
 		relic.visible = true
@@ -72,7 +88,6 @@ func _process(delta: float) -> void:
 			add_child(new_enemy)
 			await get_tree().create_timer(0.1).timeout
 			new_enemy.update_stats()
-			print("Enemy added")
 	
 func create_read_script(read_script):
 	if script_instance == null:
@@ -99,3 +114,11 @@ func _on_level_pass_area_body_entered(body: Node2D) -> void:
 			await transition_instance.transition_to_black
 			get_tree().change_scene_to_packed(next_level)
 			
+
+func reset_level():
+	transition_instance = transitioner.instantiate()
+	get_tree().root.add_child(transition_instance)
+	await get_tree().create_timer(2.0).timeout
+	transition_instance.transition()
+	await transition_instance.transition_to_black
+	get_tree().reload_current_scene()

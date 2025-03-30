@@ -29,7 +29,7 @@ var can_shrapnel = true
 var HEALTH = 300.00
 var MAX_HEALTH = 300.00
 const SPEED = 120.0
-const DAMAGE= 40.0 * 10
+const DAMAGE= 40.0
 
 var health_bar_offset = Vector2(220,-250)
 var read_script =""
@@ -190,7 +190,7 @@ func _on_button_checker_area_area_exited(area: Area2D) -> void:
 
 
 func _on_death_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+	pass
 
 
 func _on_incendiery_timer_timeout() -> void:
