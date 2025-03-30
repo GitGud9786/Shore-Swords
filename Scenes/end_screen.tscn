@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ke73dkk27ypg"]
+[gd_scene load_steps=36 format=3 uid="uid://ke73dkk27ypg"]
 
 [ext_resource type="PackedScene" uid="uid://bvtypihj7sslk" path="res://Scenes/map.tscn" id="1_2bkb1"]
 [ext_resource type="Script" path="res://Scripts/end_screen.gd" id="1_cx4vw"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cabkt1g4p0tfa" path="res://Assets/UI/Ribbons/Ribbon_Red_3Slides.png" id="11_p3jnn"]
 [ext_resource type="Texture2D" uid="uid://c87v6dpein2ca" path="res://Assets/UI/Buttons/Button_Blue_3Slides.png" id="12_i5iwj"]
 [ext_resource type="Texture2D" uid="uid://ylruh5o61sxc" path="res://Assets/UI/Buttons/Button_Blue_3Slides_Pressed.png" id="13_4bpfy"]
+[ext_resource type="AudioStream" uid="uid://ii8fjjf852in" path="res://Soundtracks/credit-scene.mp3" id="14_c7t58"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v32f6"]
 atlas = ExtResource("5_k2iso")
@@ -202,9 +203,9 @@ position = Vector2(675, 163)
 [node name="play_again" type="Button" parent="."]
 z_index = 6
 layout_mode = 0
-offset_left = 510.0
+offset_left = 496.0
 offset_top = 399.0
-offset_right = 687.0
+offset_right = 673.0
 offset_bottom = 465.0
 theme = ExtResource("7_r8ec5")
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
@@ -219,9 +220,9 @@ text = "Play again"
 [node name="Label" type="Label" parent="."]
 z_index = 6
 layout_mode = 0
-offset_left = 470.0
+offset_left = 456.0
 offset_top = 272.0
-offset_right = 727.0
+offset_right = 713.0
 offset_bottom = 380.0
 theme = ExtResource("7_r8ec5")
 theme_override_colors/font_color = Color(1, 1, 0, 1)
@@ -234,9 +235,9 @@ horizontal_alignment = 1
 [node name="exit_button" type="Button" parent="."]
 z_index = 6
 layout_mode = 0
-offset_left = 510.0
+offset_left = 496.0
 offset_top = 465.0
-offset_right = 687.0
+offset_right = 673.0
 offset_bottom = 531.0
 theme = ExtResource("7_r8ec5")
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
@@ -247,6 +248,11 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_d6n5n")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ueqc4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_g6as0")
 text = "EXIT"
+
+[node name="end_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_c7t58")
+volume_db = -80.0
+autoplay = true
 
 [connection signal="pressed" from="play_again" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="exit_button" to="." method="_on_exit_button_pressed"]

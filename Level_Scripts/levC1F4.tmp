@@ -654,27 +654,6 @@ position = Vector2(-1814, -306)
 [node name="meat10" parent="Food" instance=ExtResource("17_5hkq0")]
 position = Vector2(-1497, -533)
 
-[node name="meat11" parent="Food" instance=ExtResource("17_5hkq0")]
-position = Vector2(-1517, 1010)
-
-[node name="meat12" parent="Food" instance=ExtResource("17_5hkq0")]
-position = Vector2(-1100, 673)
-
-[node name="meat13" parent="Food" instance=ExtResource("17_5hkq0")]
-position = Vector2(-1281, 387)
-
-[node name="meat14" parent="Food" instance=ExtResource("17_5hkq0")]
-position = Vector2(-1441, -236)
-
-[node name="meat15" parent="Food" instance=ExtResource("17_5hkq0")]
-position = Vector2(-1176, -183)
-
-[node name="meat16" parent="Food" instance=ExtResource("17_5hkq0")]
-position = Vector2(958, 471)
-
-[node name="meat17" parent="Food" instance=ExtResource("17_5hkq0")]
-position = Vector2(67, 804)
-
 [node name="Bush" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -732,6 +711,9 @@ shape = SubResource("RectangleShape2D_odatl")
 stream = ExtResource("21_vj2bi")
 volume_db = -80.0
 autoplay = true
+
+[node name="meat" parent="." instance=ExtResource("17_5hkq0")]
+position = Vector2(-1517, 1010)
 
 [connection signal="child_exiting_tree" from="TNT goblins" to="." method="_on_tnt_goblins_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Archer" to="." method="_on_archer_child_exiting_tree"]

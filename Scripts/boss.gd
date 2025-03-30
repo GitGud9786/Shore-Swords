@@ -73,13 +73,11 @@ func _process(delta: float) -> void:
 	#	velocity = direction * SPEED
 	#	move_and_slide()
 	
-	elif target and !dead and global_position.distance_to(target.global_position) < 100:
+	elif target and !dead and global_position.distance_to(target.global_position) < 100 and !attack_mode:
 		attack_protagonist()
-		if dash_mode:
-			dash_mode = false
-			SPEED = FIXED_SPEED
+		dash_mode = false
 	
-	elif target and !dead and !attack_mode and cooldown_timer.time_left == 0:
+	elif target and !dead and !attack_mode and !dash_mode and cooldown_timer.time_left == 0:
 		var move = randi() % 2
 		if move == 1:
 			perform_dash()
@@ -89,8 +87,6 @@ func _process(delta: float) -> void:
 			range_attack()
 			
 	elif target and !dead and !attack_mode: #default case
-		print(SPEED)
-		animated_sprite.play("golem_idle")
 		velocity = direction * SPEED
 		move_and_slide()
 
@@ -137,20 +133,22 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		attack_mode = false
 		cooldown_timer.start()
 	elif animated_sprite.animation ==  "golem_dash":
-		dash_mode = false
+		print("Ended dash")
 		cooldown_timer.start()
+		dash_mode = false
 	if animated_sprite.animation != 'golem_dead':
 		animated_sprite.play("golem_idle")
 	SPEED = FIXED_SPEED
+	print(dash_mode)
 
 func perform_dash():
+	print("Dash function")
 	animated_sprite.play("golem_dash")
 	dash_mode= true 
 	SPEED = 150.00
 	
 
 func range_attack():
-	print("range")
 	beam_direction = target.global_position
 	var projectile_type = randi() % 2
 	if projectile_type == 1:

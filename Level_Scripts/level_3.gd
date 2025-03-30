@@ -70,6 +70,7 @@ func _process(delta: float) -> void:
 		relic.get_node("relic_area_collision").monitoring = true
 		relic.visible = true
 	if relic==null and spawn:
+		protagonist.update_level_3()
 		spawn = false
 		for pos in archer_positions:
 			var new_enemy = archer.instantiate()

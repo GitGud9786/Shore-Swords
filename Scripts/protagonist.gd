@@ -28,8 +28,8 @@ var can_shrapnel = true
 
 var HEALTH = 300.00
 var MAX_HEALTH = 300.00
-const SPEED = 125.0
-const DAMAGE= 40.0
+var SPEED = 125.0 
+var DAMAGE= 40.0
 
 var health_bar_offset = Vector2(220,-250)
 var read_script =""
@@ -37,6 +37,16 @@ var health_instance : ProgressBar = null
 var incendiary_bar_instance : ProgressBar = null
 var shrapnel_bar_instance : ProgressBar = null
 var passed = false
+var damage_thrice = false
+
+func update_level_1():
+	SPEED = SPEED * 1.5
+	
+func update_level_2():
+	DAMAGE = DAMAGE * 3
+
+func update_level_3():
+	damage_thrice = true
 
 func invincible():
 	passed = true
@@ -140,6 +150,8 @@ func get_death_status():
 	return dead
 
 func take_damage(damage) -> bool:
+	if damage_thrice:
+		damage = damage/3
 	if passed:
 		return false
 	HEALTH -= damage

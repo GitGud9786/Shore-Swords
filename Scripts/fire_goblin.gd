@@ -93,7 +93,7 @@ func lock_on_protagonist(body) -> void:
 	var player_direction = global_position.direction_to(body.global_position)
 	detector_ray.rotation = player_direction.angle()
 	
-	if global_position.distance_to(body.global_position)<70.0 and !body.get_death_status():
+	if global_position.distance_to(body.global_position)<50.0 and !body.get_death_status():
 		attack_protagonist()
 		
 	elif !body.get_death_status():

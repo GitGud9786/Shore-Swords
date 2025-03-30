@@ -81,6 +81,7 @@ func _process(delta: float) -> void:
 		relic.get_node("relic_area_collision").monitoring = true
 		relic.visible = true
 	if relic==null and spawn:
+		protagonist.update_level_1()
 		spawn = false
 		for pos in foe_positions:
 			var new_enemy = enemy.instantiate()
