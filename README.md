@@ -5,7 +5,7 @@ Shore Swords encapsulate the journey of a knight across a few islands in order t
 Shore Swords is developed using Godot Game Engine, using GD script which is mainly a derived language of Python.
 
 # Features:
-New enemies introduced in every level
-Dual attack type
-Potential buffs after every relic collection for that dedicated level
-Potential buff for enemies after every relic collection for that dedicated level
+- New enemies introduced in every level
+- Dual attack type
+- Potential buffs after every relic collection for that dedicated level
+- Potential buff for enemies after every relic collection for that dedicated level
